@@ -8,7 +8,9 @@
     "lint": "eslint .",
     "lint:debug": "eslint . --debug",
     "lint:fix": "eslint . --fix",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "pre-commit": "lint-staged",
+    "prepare": "husky"
   },
   "dependencies": {
     "@fontsource-variable/wix-madefor-text": "^5.0.6",
@@ -36,6 +38,8 @@
     "eslint-plugin-solid": "^0.14.1",
     "eslint-plugin-tailwindcss": "^3.17.4",
     "globals": "^15.8.0",
+    "husky": "^9.1.1",
+    "lint-staged": "^15.2.7",
     "postcss": "^8.4.39",
     "prettier": "3.3.3",
     "prettier-plugin-tailwindcss": "^0.6.5",
