@@ -10,6 +10,5 @@
   "[typescriptreact]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
   "[yaml]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
   "editor.quickSuggestions": { "strings": "on" },
-  "files.associations": { "*.css": "tailwindcss" },
-  "i18n-ally.localesPaths": ["locales"]
+  "files.associations": { "*.css": "tailwindcss" }
 }
