@@ -4,6 +4,7 @@ import { FileRoutes } from "@solidjs/start/router";
 import { Suspense } from "solid-js";
 
 import "@fontsource-variable/wix-madefor-text";
+
 import resources from "../locales";
 import "./app.css";
 
