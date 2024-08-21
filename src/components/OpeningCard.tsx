@@ -9,7 +9,7 @@ export interface OpeningCardProps {
 
 export default function OpeningCard(props: OpeningCardProps) {
   return (
-    <article class="group flex w-64 flex-col rounded-2xl transition-all hover:bg-color-surface-0">
+    <article class="group flex w-64 flex-col rounded-2xl transition-all hover:scale-105 hover:bg-color-surface-0">
       <img
         src={props.thumbnailLink.toString()}
         // TODO: i18n
