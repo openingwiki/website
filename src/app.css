@@ -4,111 +4,62 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
+    @apply bg-color-base font-sans text-color-text;
 
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
+    --color-rosewater: 220 138 120;
+    --color-flamingo: 221 120 120;
+    --color-pink: 234 118 203;
+    --color-mauve: 136 57 239;
+    --color-red: 210 15 57;
+    --color-maroon: 230 69 83;
+    --color-peach: 254 100 11;
+    --color-yellow: 223 142 29;
+    --color-green: 64 160 43;
+    --color-teal: 23 146 153;
+    --color-sky: 4 165 229;
+    --color-sapphire: 32 159 181;
+    --color-blue: 30 102 245;
+    --color-lavender: 114 135 253;
+    --color-text: 76 79 105;
+    --color-subtext-1: 92 95 119;
+    --color-subtext-0: 108 111 133;
+    --color-overlay-2: 124 127 147;
+    --color-overlay-1: 140 143 161;
+    --color-overlay-0: 156 160 176;
+    --color-surface-2: 172 176 190;
+    --color-surface-1: 188 192 204;
+    --color-surface-0: 204 208 218;
+    --color-base: 239 241 245;
+    --color-mantle: 230 233 239;
+    --color-crust: 220 224 232;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
-
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-
-    --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
-
-    --primary: 240 5.9% 10%;
-    --primary-foreground: 0 0% 98%;
-
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
-
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-
-    --info: 204 94% 94%;
-    --info-foreground: 199 89% 48%;
-
-    --success: 149 80% 90%;
-    --success-foreground: 160 84% 39%;
-
-    --warning: 48 96% 89%;
-    --warning-foreground: 25 95% 53%;
-
-    --error: 0 93% 94%;
-    --error-foreground: 0 84% 60%;
-
-    --ring: 240 5.9% 10%;
-
-    --radius: 0.5rem;
-  }
-
-  .dark,
-  [data-kb-theme="dark"] {
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
-
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
-
-    --accent: 240 3.7% 15.9%;
-    --accent-foreground: 0 0% 98%;
-
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 0 0% 98%;
-
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-
-    --card: 240 10% 3.9%;
-    --card-foreground: 0 0% 98%;
-
-    --primary: 0 0% 98%;
-    --primary-foreground: 240 5.9% 10%;
-
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-
-    --info: 204 94% 94%;
-    --info-foreground: 199 89% 48%;
-
-    --success: 149 80% 90%;
-    --success-foreground: 160 84% 39%;
-
-    --warning: 48 96% 89%;
-    --warning-foreground: 25 95% 53%;
-
-    --error: 0 93% 94%;
-    --error-foreground: 0 84% 60%;
-
-    --ring: 240 4.9% 83.9%;
-
-    --radius: 0.5rem;
-  }
-}
-
-@layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
-    font-feature-settings:
-      "rlig" 1,
-      "calt" 1;
-  }
-}
-
-@media (max-width: 640px) {
-  .container {
-    @apply px-4;
+    @media (prefers-color-scheme: dark) {
+      --color-rosewater: 244 219 214;
+      --color-flamingo: 240 198 198;
+      --color-pink: 245 189 230;
+      --color-mauve: 198 160 246;
+      --color-red: 237 135 150;
+      --color-maroon: 238 153 160;
+      --color-peach: 245 169 127;
+      --color-yellow: 238 212 159;
+      --color-green: 166 218 149;
+      --color-teal: 139 213 202;
+      --color-sky: 145 215 227;
+      --color-sapphire: 125 196 228;
+      --color-blue: 138 173 244;
+      --color-lavender: 183 189 248;
+      --color-text: 202 211 245;
+      --color-subtext-1: 184 192 224;
+      --color-subtext-0: 165 173 203;
+      --color-overlay-2: 147 154 183;
+      --color-overlay-1: 128 135 162;
+      --color-overlay-0: 110 115 141;
+      --color-surface-2: 91 96 120;
+      --color-surface-1: 73 77 100;
+      --color-surface-0: 54 58 79;
+      --color-base: 36 39 58;
+      --color-mantle: 30 32 48;
+      --color-crust: 24 25 38;
+    }
   }
 }
