@@ -3,7 +3,6 @@ import { Trans, useTransContext } from "@mbarzda/solid-i18next";
 export interface OpeningCardProps {
   name: string;
   animeName: string;
-  sourceLink: URL;
   thumbnailLink: URL;
 }
 

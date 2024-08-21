@@ -42,7 +42,6 @@ export default function Home() {
                   <OpeningCard
                     name={item.name}
                     animeName={item.animeName}
-                    youtubeEmbedLink={item.youtubeEmbedLink}
                     thumbnailLink={item.thumbnailLink}
                   />
                 </li>
