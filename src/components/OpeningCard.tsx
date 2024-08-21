@@ -13,10 +13,10 @@ export default function OpeningCard(props: OpeningCardProps) {
         alt={`Thumbnail of ${props.animeName}`}
         class="aspect-square rounded-2xl"
       />
-      <div class="flex flex-col gap-4 p-4 text-center">
+      <div class="flex flex-col gap-3 p-4 text-center">
         <h1 class="font-medium text-color-green">{props.name}</h1>
         <span>{props.animeName}</span>
-        <button class="w-full rounded-lg border-2 border-solid border-color-blue text-color-blue hover:bg-color-blue hover:text-color-light">
+        <button class="w-full rounded-lg border-2 border-solid border-color-blue bg-color-blue bg-opacity-0 text-color-blue hover:bg-opacity-25 hover:font-medium active:bg-opacity-100 active:font-medium active:text-color-light">
           More
         </button>
       </div>
