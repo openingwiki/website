@@ -1,24 +1,25 @@
 import { Trans } from "@mbarzda/solid-i18next";
 import { For } from "solid-js";
 import Heading from "~/components/Heading";
-import type { OpeningCardProps } from "~/components/OpeningCard";
 import OpeningCard from "~/components/OpeningCard";
 
-function retrieve(): OpeningCardProps[] {
+function retrieve() {
   return [
     {
       name: "Great Days",
       animeName: "JoJo's Bizarre Adventure: Diamond is Unbreakable",
       sourceLink: new URL("https://google.com"),
       thumbnailLink: new URL(
-        "https://static.wikia.nocookie.net/jjba/images/8/8a/JoJo_OP7.png/revision/latest?cb=20161018200049",
+        "https://static.jojowiki.com/images/8/8a/latest/20210831055754/JoJo_OP7.png",
       ),
     },
     {
       name: "Unravel",
       animeName: "Tokyo Ghoul",
       sourceLink: new URL("https://google.com"),
-      thumbnailLink: new URL("https://google.com"),
+      thumbnailLink: new URL(
+        "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/79479f19016951.562d38d2394d3.png",
+      ),
     },
   ];
 }

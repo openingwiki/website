@@ -1,4 +1,4 @@
-import { Trans } from "@mbarzda/solid-i18next";
+import { Trans, useTransContext } from "@mbarzda/solid-i18next";
 
 export interface OpeningCardProps {
   name: string;
@@ -8,15 +8,16 @@ export interface OpeningCardProps {
 }
 
 export default function OpeningCard(props: OpeningCardProps) {
+  const [t] = useTransContext();
+
   return (
-    <article class="group flex w-64 flex-col rounded-2xl transition-all hover:scale-105 hover:bg-color-surface-0">
+    <article class="group flex w-64 flex-col gap-2 rounded-2xl text-center transition-all hover:scale-105 hover:bg-color-surface-0">
       <img
         src={props.thumbnailLink.toString()}
-        // TODO: i18n
-        alt={`Thumbnail of ${props.animeName}`}
+        alt={t("thumbnail", { of: props.animeName })}
         class="aspect-square rounded-2xl"
       />
-      <div class="flex flex-col gap-2 p-4 text-center">
+      <div class="flex flex-col px-4 pb-4">
         <h1 class="font-medium text-color-green">{props.name}</h1>
         <div class="hidden flex-col gap-3 group-hover:flex">
           <span>{props.animeName}</span>
