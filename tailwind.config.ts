@@ -36,6 +36,8 @@ export default {
       "color-base": "rgb(var(--color-base) / <alpha-value>)",
       "color-mantle": "rgb(var(--color-mantle) / <alpha-value>)",
       "color-crust": "rgb(var(--color-crust) / <alpha-value>)",
+      "color-light": "rgb(var(--color-light) / <alpha-value>)",
+      "color-dark": "rgb(var(--color-dark) / <alpha-value>)",
     },
   },
 } satisfies Config;

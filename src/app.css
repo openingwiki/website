@@ -33,6 +33,9 @@
     --color-mantle: 230 233 239;
     --color-crust: 220 224 232;
 
+    --color-light: 239 241 245;
+    --color-dark: 76 79 105;
+
     @media (prefers-color-scheme: dark) {
       --color-rosewater: 244 219 214;
       --color-flamingo: 240 198 198;
@@ -60,6 +63,9 @@
       --color-base: 36 39 58;
       --color-mantle: 30 32 48;
       --color-crust: 24 25 38;
+
+      --color-light: 202 211 245;
+      --color-dark: 36 39 58;
     }
   }
 }

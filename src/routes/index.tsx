@@ -9,7 +9,9 @@ function retrieve(): OpeningCardProps[] {
       name: "Great Days",
       animeName: "JoJo's Bizarre Adventure: Diamond is Unbreakable",
       sourceLink: new URL("https://google.com"),
-      thumbnailLink: new URL("https://google.com"),
+      thumbnailLink: new URL(
+        "https://static.wikia.nocookie.net/jjba/images/8/8a/JoJo_OP7.png/revision/latest?cb=20161018200049",
+      ),
     },
     {
       name: "Unravel",
@@ -24,7 +26,7 @@ export default function Home() {
   return (
     <main>
       <section class="flex flex-col gap-4">
-        <Heading level={2}>Best of all time</Heading>
+        <Heading level={2}>Best of All Time</Heading>
 
         <ul class="flex flex-row gap-4">
           <For each={retrieve()}>
