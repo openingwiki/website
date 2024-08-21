@@ -15,7 +15,7 @@ export default function OpeningCard(props: OpeningCardProps) {
         alt={`Thumbnail of ${props.animeName}`}
         class="aspect-square rounded-2xl"
       />
-      <div class="flex flex-col gap-3 p-4 text-center">
+      <div class="flex flex-col gap-2 p-4 text-center">
         <h1 class="font-medium text-color-green">{props.name}</h1>
         <div class="hidden flex-col gap-3 group-hover:flex">
           <span>{props.animeName}</span>
