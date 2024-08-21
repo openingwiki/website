@@ -7,11 +7,11 @@ export interface OpeningCardProps {
 
 export default function OpeningCard(props: OpeningCardProps) {
   return (
-    <article class="flex w-64 flex-col text-clip rounded-2xl bg-color-surface-0">
+    <article class="flex w-64 flex-col rounded-2xl bg-color-surface-0">
       <img
         src={props.thumbnailLink.toString()}
         alt={`Thumbnail of ${props.animeName}`}
-        class="aspect-square rounded-b-2xl"
+        class="aspect-square rounded-2xl"
       />
       <div class="flex flex-col gap-4 p-4 text-center">
         <h1 class="font-medium text-color-green">{props.name}</h1>
