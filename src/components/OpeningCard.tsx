@@ -12,6 +12,7 @@ export default function OpeningCard(props: OpeningCardProps) {
     <article class="group flex w-64 flex-col rounded-2xl transition-all hover:bg-color-surface-0">
       <img
         src={props.thumbnailLink.toString()}
+        // TODO: i18n
         alt={`Thumbnail of ${props.animeName}`}
         class="aspect-square rounded-2xl"
       />
