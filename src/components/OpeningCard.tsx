@@ -1,6 +1,8 @@
 import { Trans, useTransContext } from "@mbarzda/solid-i18next";
+import { A } from "@solidjs/router";
 
 export interface OpeningCardProps {
+  codename: string;
   name: string;
   animeName: string;
   thumbnailLink: URL;
@@ -20,9 +22,12 @@ export default function OpeningCard(props: OpeningCardProps) {
         <h1 class="font-medium text-color-green">{props.name}</h1>
         <div class="hidden flex-col gap-3 group-hover:flex">
           <span>{props.animeName}</span>
-          <button class="w-full rounded-lg border-2 border-solid border-color-blue text-color-blue transition hover:bg-color-blue/25 hover:font-medium active:bg-color-blue active:font-medium active:text-color-light">
+          <A
+            href={`/op/${props.codename}`}
+            class="w-full rounded-lg border-2 border-solid border-color-blue text-color-blue transition hover:bg-color-blue/25 hover:font-medium active:bg-color-blue active:font-medium active:text-color-light"
+          >
             <Trans key="more" />
-          </button>
+          </A>
         </div>
       </div>
     </article>

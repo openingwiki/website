@@ -6,7 +6,7 @@ import OpeningCard from "~/components/OpeningCard";
 function retrieve() {
   return [
     {
-      id: "Great_Days",
+      codename: "Great_Days",
       name: "Great Days",
       animeName: "JoJo's Bizarre Adventure: Diamond is Unbreakable",
       youtubeEmbedLink: new URL("https://www.youtube.com/embed/mU3vgXUKeFM"),
@@ -15,7 +15,7 @@ function retrieve() {
       ),
     },
     {
-      id: "Unravel",
+      codename: "Unravel",
       name: "Unravel",
       animeName: "Tokyo Ghoul",
       youtubeEmbedLink: new URL("https://www.youtube.com/embed/7aMOurgDB-o"),
@@ -40,6 +40,7 @@ export default function Home() {
               {(item) => (
                 <li>
                   <OpeningCard
+                    codename={item.codename}
                     name={item.name}
                     animeName={item.animeName}
                     thumbnailLink={item.thumbnailLink}
