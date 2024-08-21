@@ -1,4 +1,6 @@
 {
+  "app-name": "Opening Wiki",
+  "title": "{{page}} - $t(app-name)",
   "best-of-all-time": "Best of All Time",
   "more": "More",
   "thumbnail": "Thumbnail of “{{of}}”"
