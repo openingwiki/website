@@ -8,6 +8,9 @@ export default {
       fontFamily: {
         sans: ["Wix Madefor Text Variable", ...defaultTheme.fontFamily.sans],
       },
+      spacing: {
+        "240": "60rem",
+      },
     },
     colors: {
       "color-rosewater": "rgb(var(--color-rosewater) / <alpha-value>)",
