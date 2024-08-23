@@ -1,12 +1,12 @@
 import { useTransContext } from "@mbarzda/solid-i18next";
 import { Title } from "@solidjs/meta";
-import { JSX, Show, type VoidProps } from "solid-js";
+import { type JSXElement, Show, type VoidProps } from "solid-js";
 
-export interface BrandedTitleProps {
+interface BrandedTitleProps {
   page?: string;
 }
 
-export function BrandedTitle(props: VoidProps<BrandedTitleProps>): JSX.Element {
+export function BrandedTitle(props: VoidProps<BrandedTitleProps>): JSXElement {
   const [t] = useTransContext();
 
   return (

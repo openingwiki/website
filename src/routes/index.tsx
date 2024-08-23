@@ -1,6 +1,6 @@
 import { Trans } from "@mbarzda/solid-i18next";
 import { cache, createAsync, RouteDefinition } from "@solidjs/router";
-import { For, JSX } from "solid-js";
+import { For, type JSXElement } from "solid-js";
 import Heading from "~/components/Heading";
 import OpeningCard from "~/components/OpeningCard";
 import { useApiOpenings } from "~/lib/api";
@@ -14,7 +14,7 @@ export const route = {
   load: () => getOpenings(),
 } satisfies RouteDefinition;
 
-export default function Home(): JSX.Element {
+export default function Home(): JSXElement {
   const openings = createAsync(() => getOpenings());
 
   return (

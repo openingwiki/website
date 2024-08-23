@@ -1,4 +1,4 @@
-import { JSX, Match, Switch, type ParentProps } from "solid-js";
+import { Match, Switch, type JSXElement, type ParentProps } from "solid-js";
 import { twMerge } from "tailwind-merge";
 
 interface HeadingProps {
@@ -6,7 +6,7 @@ interface HeadingProps {
   level?: number;
 }
 
-export default function Heading(props: ParentProps<HeadingProps>): JSX.Element {
+export default function Heading(props: ParentProps<HeadingProps>): JSXElement {
   const level = () => props.level ?? 1;
 
   return (
