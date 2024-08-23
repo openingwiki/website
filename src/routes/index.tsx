@@ -1,5 +1,5 @@
 import { Trans } from "@mbarzda/solid-i18next";
-import { cache, createAsync } from "@solidjs/router";
+import { cache, createAsync, RouteDefinition } from "@solidjs/router";
 import { For } from "solid-js";
 import Heading from "~/components/Heading";
 import OpeningCard from "~/components/OpeningCard";
@@ -12,7 +12,7 @@ const getOpenings = cache(async () => {
 
 export const route = {
   load: () => getOpenings(),
-};
+} satisfies RouteDefinition;
 
 export default function Home() {
   const openings = createAsync(() => getOpenings());

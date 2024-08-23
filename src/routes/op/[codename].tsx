@@ -1,5 +1,10 @@
 import { useTransContext } from "@mbarzda/solid-i18next";
-import { cache, createAsync, Params, useParams } from "@solidjs/router";
+import {
+  cache,
+  createAsync,
+  RouteDefinition,
+  useParams,
+} from "@solidjs/router";
 import { useApiOpening } from "~/lib/api";
 import { BrandedTitle } from "~/lib/meta";
 
@@ -9,8 +14,8 @@ const getOpening = cache(async (codename: string) => {
 }, "opening");
 
 export const route = {
-  load: (params: Params) => getOpening(params.codename),
-};
+  load: ({ params }) => getOpening(params.codename),
+} satisfies RouteDefinition;
 
 export default function Opening() {
   const params = useParams();
