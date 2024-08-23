@@ -5,6 +5,7 @@ import {
   RouteDefinition,
   useParams,
 } from "@solidjs/router";
+import { type JSX } from "solid-js";
 import { useApiOpening } from "~/lib/api";
 import { BrandedTitle } from "~/lib/meta";
 
@@ -17,7 +18,7 @@ export const route = {
   load: ({ params }) => getOpening(params.codename),
 } satisfies RouteDefinition;
 
-export default function Opening() {
+export default function Opening(): JSX.Element {
   const params = useParams();
   const opening = createAsync(() => getOpening(params.codename));
   const [t] = useTransContext();

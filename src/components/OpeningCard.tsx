@@ -1,14 +1,17 @@
 import { Trans, useTransContext } from "@mbarzda/solid-i18next";
 import { useNavigate } from "@solidjs/router";
+import { JSX, type VoidProps } from "solid-js";
 
-export interface OpeningCardProps {
+interface OpeningCardProps {
   codename: string;
   name: string;
   animeName: string;
   thumbnailLink: URL;
 }
 
-export default function OpeningCard(props: OpeningCardProps) {
+export default function OpeningCard(
+  props: VoidProps<OpeningCardProps>,
+): JSX.Element {
   const navigate = useNavigate();
   const [t] = useTransContext();
 
