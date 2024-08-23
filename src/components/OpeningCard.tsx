@@ -1,6 +1,7 @@
-import { Trans, useTransContext } from "@mbarzda/solid-i18next";
+import { useTransContext } from "@mbarzda/solid-i18next";
 import { useNavigate } from "@solidjs/router";
 import { type JSXElement, type VoidProps } from "solid-js";
+import { T, useT } from "~/lib/i18n";
 
 interface OpeningCardProps {
   codename: string;
@@ -13,7 +14,7 @@ export default function OpeningCard(
   props: VoidProps<OpeningCardProps>,
 ): JSXElement {
   const navigate = useNavigate();
-  const [t] = useTransContext();
+  const t = useT(useTransContext());
 
   return (
     <article class="group flex w-64 flex-col gap-2 rounded-2xl text-center transition-all hover:scale-105 hover:bg-color-surface-0 hover:shadow">
@@ -35,7 +36,7 @@ export default function OpeningCard(
               navigate(`/op/${props.codename}`);
             }}
           >
-            <Trans key="more" />
+            <T key="more" />
           </button>
         </div>
       </div>

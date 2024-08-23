@@ -1,10 +1,11 @@
 // @refresh reload
 import { createHandler, StartServer } from "@solidjs/start/server";
+import { DEFAULT_LOCALE } from "~/lib/i18n";
 
 export default createHandler(() => (
   <StartServer
     document={({ assets, children, scripts }) => (
-      <html lang="en">
+      <html lang={DEFAULT_LOCALE}>
         <head>
           <meta charset="utf-8" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />

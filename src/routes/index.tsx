@@ -1,9 +1,9 @@
-import { Trans } from "@mbarzda/solid-i18next";
-import { cache, createAsync, RouteDefinition } from "@solidjs/router";
+import { cache, createAsync, type RouteDefinition } from "@solidjs/router";
 import { For, type JSXElement } from "solid-js";
 import Heading from "~/components/Heading";
 import OpeningCard from "~/components/OpeningCard";
 import { useApiOpenings } from "~/lib/api";
+import { T } from "~/lib/i18n";
 
 const getOpenings = cache(async () => {
   "use server";
@@ -22,7 +22,7 @@ export default function Home(): JSXElement {
       <main class="flex flex-col p-6">
         <section class="flex flex-col gap-8">
           <Heading level={2}>
-            <Trans key="best-of-all-time" />
+            <T key="best-of-all-time" />
           </Heading>
 
           <ul class="flex flex-row gap-6">
