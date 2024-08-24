@@ -20,7 +20,7 @@ export default function OpeningCard(
       <img
         class="aspect-square rounded-2xl"
         src={props.thumbnailLink.toString()}
-        alt={t("thumbnail", { of: props.animeName })}
+        alt={t("opening-card.thumbnail", { of: props.animeName })}
       />
       <div class="flex flex-col gap-1 px-4 pb-4">
         <h1 class="text-lg font-medium text-color-green group-hover:font-semibold">
@@ -35,7 +35,7 @@ export default function OpeningCard(
               navigate(`/op/${props.codename}`);
             }}
           >
-            <T key="more" />
+            <T key="opening-card.more" />
           </button>
         </div>
       </div>

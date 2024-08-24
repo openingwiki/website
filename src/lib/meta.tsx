@@ -12,7 +12,7 @@ export function BrandedTitle(props: VoidProps<BrandedTitleProps>): JSXElement {
   return (
     <Title>
       <Show when={props.page !== undefined} fallback={t("app-name")}>
-        {t("title", { page: props.page })}
+        {t("util.title", { page: props.page })}
       </Show>
     </Title>
   );

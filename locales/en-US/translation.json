@@ -1,7 +1,17 @@
 {
   "app-name": "Opening Wiki",
-  "title": "{{page}} - $t(app-name)",
-  "best-of-all-time": "Best of All Time",
-  "more": "More",
-  "thumbnail": "Thumbnail of “{{of}}”"
+  "util": {
+    "title": "{{page}} - $t(app-name)"
+  },
+  "home": {
+    "best-of-all-time": "Best of All Time"
+  },
+  "error": {
+    "title": "Error",
+    "message": "Something went wrong…"
+  },
+  "opening-card": {
+    "more": "More",
+    "thumbnail": "Thumbnail of “{{of}}”"
+  }
 }
