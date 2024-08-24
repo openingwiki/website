@@ -5,7 +5,7 @@ import { Opening } from "~/lib/api/models";
 const Openings = z.array(Opening);
 
 export async function getOpenings(
-  limit: number,
+  limit?: number,
   offset?: number,
 ): Promise<z.infer<typeof Openings> | undefined> {
   return await get({

@@ -36,6 +36,11 @@ export async function get<T extends ZodSchema>(
     return undefined;
   }
 
+  if (!response.ok) {
+    console.error(response);
+    return undefined;
+  }
+
   const result = params.schema.safeParse(await response.json());
 
   if (result.success) {
