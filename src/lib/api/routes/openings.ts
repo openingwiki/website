@@ -1,23 +1,19 @@
-import { z } from "zod";
-import { get } from "~/lib/api";
+import { z, ZodArray } from "zod";
+import { get, Result } from "~/lib/api";
 import { Opening } from "~/lib/api/models";
-
-const Openings = z.array(Opening);
 
 export async function getOpenings(
   limit?: number,
   offset?: number,
-): Promise<z.infer<typeof Openings> | undefined> {
+): Result<ZodArray<typeof Opening>> {
   return await get({
     route: "/openings",
     queryParams: { limit, offset },
-    schema: Openings,
+    schema: z.array(Opening),
   });
 }
 
-export async function getOpening(
-  codename: string,
-): Promise<z.infer<typeof Opening> | undefined> {
+export async function getOpening(codename: string): Result<typeof Opening> {
   return await get({
     route: `/openings/${codename}`,
     schema: Opening,

@@ -1,29 +1,14 @@
-import { z, type ZodSchema } from "zod";
+import { z, type ZodType } from "zod";
 
-function apiUrl(
-  apiRoute: string,
-  queryParams?: Record<string, string | number | undefined>,
-): URL {
-  const apiUrl = new URL(apiRoute, import.meta.env.VITE_API_BASE as string);
+export type Result<T extends ZodType> = Promise<z.infer<T> | undefined>;
 
-  const searchParams = new URLSearchParams();
-  for (const name in queryParams) {
-    if (queryParams[name] !== undefined) {
-      searchParams.set(name, queryParams[name].toString());
-    }
-  }
-  apiUrl.search = searchParams.toString();
-
-  return apiUrl;
-}
-
-type GetParams<T extends ZodSchema> = {
+type GetParams<T extends ZodType> = {
   route: string;
-  queryParams?: Record<string, string | number | undefined>;
+  queryParams?: QueryParams;
   schema: T;
 };
 
-export async function get<T extends ZodSchema>(
+export async function get<T extends ZodType>(
   params: GetParams<T>,
 ): Promise<z.infer<T> | undefined> {
   const url = apiUrl(params.route, params.queryParams);
@@ -50,4 +35,29 @@ export async function get<T extends ZodSchema>(
     console.error(result.error.errors);
     return undefined;
   }
+}
+
+type QueryParams = Record<string, string | number | undefined>;
+
+function apiUrl(apiRoute: string, queryParams?: QueryParams): URL {
+  const API_BASE = import.meta.env.VITE_API_BASE as string;
+  const apiUrl = new URL(apiRoute, API_BASE);
+
+  if (queryParams !== undefined) {
+    apiUrl.search = parseQueryParams(queryParams).toString();
+  }
+
+  return apiUrl;
+}
+
+function parseQueryParams(queryParams: QueryParams): URLSearchParams {
+  const searchParams = new URLSearchParams();
+
+  for (const name in queryParams) {
+    if (queryParams[name] !== undefined) {
+      searchParams.set(name, queryParams[name].toString());
+    }
+  }
+
+  return searchParams;
 }
