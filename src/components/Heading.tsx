@@ -1,10 +1,10 @@
 import { Match, Switch, type JSXElement, type ParentProps } from "solid-js";
 import { twMerge } from "tailwind-merge";
 
-interface HeadingProps {
+type HeadingProps = {
   class?: string;
   level?: number;
-}
+};
 
 export default function Heading(props: ParentProps<HeadingProps>): JSXElement {
   const level = () => props.level ?? 1;

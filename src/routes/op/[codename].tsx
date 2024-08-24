@@ -5,7 +5,7 @@ import {
   type RouteDefinition,
 } from "@solidjs/router";
 import { type JSXElement } from "solid-js";
-import { getOpening } from "~/lib/api/openings";
+import { getOpening } from "~/lib/api/routes/openings";
 import { useT } from "~/lib/i18n";
 import { BrandedTitle } from "~/lib/meta";
 

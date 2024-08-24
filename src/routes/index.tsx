@@ -2,7 +2,7 @@ import { cache, createAsync, type RouteDefinition } from "@solidjs/router";
 import { For, type JSXElement } from "solid-js";
 import Heading from "~/components/Heading";
 import OpeningCard from "~/components/OpeningCard";
-import { getOpenings } from "~/lib/api/openings";
+import { getOpenings } from "~/lib/api/routes/openings";
 import { T } from "~/lib/i18n";
 
 const loadOpenings = cache(async () => {

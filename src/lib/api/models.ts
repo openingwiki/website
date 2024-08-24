@@ -1,7 +1,6 @@
 import { z } from "zod";
-import { endpoint } from "~/lib/api";
 
-const OpeningSchema = z
+export const Opening = z
   .object({
     // `animeName`
     anime_name: z.string(),
@@ -28,26 +27,3 @@ const OpeningSchema = z
     } = rename;
     return { ...rest, animeName, thumbnailLink, youtubeEmbedLink };
   });
-
-const OpeningsSchema = z.array(OpeningSchema);
-
-export async function getOpenings(
-  limit: number,
-  offset?: number,
-): Promise<z.infer<typeof OpeningsSchema>> {
-  const url = endpoint("/openings", { limit, offset });
-
-  return OpeningsSchema.parseAsync(
-    await fetch(url).then((response) => response.json()),
-  );
-}
-
-export async function getOpening(
-  codename: string,
-): Promise<z.infer<typeof OpeningSchema>> {
-  const url = endpoint(`/openings/${codename}`);
-
-  return OpeningSchema.parseAsync(
-    await fetch(url).then((response) => response.json()),
-  );
-}

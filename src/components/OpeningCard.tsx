@@ -2,12 +2,12 @@ import { useNavigate } from "@solidjs/router";
 import { type JSXElement, type VoidProps } from "solid-js";
 import { T, useT } from "~/lib/i18n";
 
-interface OpeningCardProps {
+type OpeningCardProps = {
   codename: string;
   name: string;
   animeName: string;
   thumbnailLink: URL;
-}
+};
 
 export default function OpeningCard(
   props: VoidProps<OpeningCardProps>,
