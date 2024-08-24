@@ -25,7 +25,7 @@ export default function Home(): JSXElement {
           <main class="flex flex-col p-6">
             <section class="flex flex-col gap-8">
               <Heading level={2}>
-                <T key="home.best-of-all-time" />
+                <T key="home.all-openings" />
               </Heading>
               <ul class="flex flex-row gap-6">
                 <For each={openings()}>

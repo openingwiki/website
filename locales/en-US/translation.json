@@ -4,7 +4,7 @@
     "title": "{{page}} - $t(app-name)"
   },
   "home": {
-    "best-of-all-time": "Best of All Time"
+    "all-openings": "All Openings"
   },
   "error": {
     "title": "Error",
