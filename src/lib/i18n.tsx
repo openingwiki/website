@@ -1,9 +1,4 @@
-import {
-  Trans,
-  TransProvider,
-  TransProviderActions,
-} from "@mbarzda/solid-i18next";
-import { type TFunction } from "i18next";
+import { Trans, TransProvider, useTransContext } from "@mbarzda/solid-i18next";
 import { type JSXElement, type ParentProps } from "solid-js";
 import resources from "../../locales";
 
@@ -29,10 +24,12 @@ export function I18n(props: ParentProps): JSXElement {
   );
 }
 
-export function useT(
-  transContext: [TFunction, TransProviderActions],
-): (key: Key, options?: Record<string, unknown>) => string {
-  return (key, options) => transContext[0](key, options);
+export function useT(): (
+  key: Key,
+  options?: Record<string, unknown>,
+) => string {
+  const [t] = useTransContext();
+  return (key, options) => t(key, options);
 }
 
 interface TProps {

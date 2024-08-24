@@ -1,4 +1,3 @@
-import { useTransContext } from "@mbarzda/solid-i18next";
 import {
   cache,
   createAsync,
@@ -6,23 +5,23 @@ import {
   type RouteDefinition,
 } from "@solidjs/router";
 import { type JSXElement } from "solid-js";
-import { useApiOpening } from "~/lib/api";
+import { getOpening } from "~/lib/api/openings";
 import { useT } from "~/lib/i18n";
 import { BrandedTitle } from "~/lib/meta";
 
-const getOpening = cache(async (codename: string) => {
+const loadOpening = cache(async (codename: string) => {
   "use server";
-  return await useApiOpening(codename);
+  return await getOpening(codename);
 }, "opening");
 
 export const route = {
-  load: ({ params }) => getOpening(params.codename),
+  load: ({ params }) => loadOpening(params.codename),
 } satisfies RouteDefinition;
 
 export default function Opening(): JSXElement {
   const params = useParams();
-  const opening = createAsync(() => getOpening(params.codename));
-  const t = useT(useTransContext());
+  const opening = createAsync(() => loadOpening(params.codename));
+  const t = useT();
 
   return (
     <>

@@ -2,20 +2,20 @@ import { cache, createAsync, type RouteDefinition } from "@solidjs/router";
 import { For, type JSXElement } from "solid-js";
 import Heading from "~/components/Heading";
 import OpeningCard from "~/components/OpeningCard";
-import { useApiOpenings } from "~/lib/api";
+import { getOpenings } from "~/lib/api/openings";
 import { T } from "~/lib/i18n";
 
-const getOpenings = cache(async () => {
+const loadOpenings = cache(async () => {
   "use server";
-  return await useApiOpenings(2);
+  return await getOpenings(2);
 }, "openings");
 
 export const route = {
-  load: () => getOpenings(),
+  load: () => loadOpenings(),
 } satisfies RouteDefinition;
 
 export default function Home(): JSXElement {
-  const openings = createAsync(() => getOpenings());
+  const openings = createAsync(() => loadOpenings());
 
   return (
     <>
@@ -24,7 +24,6 @@ export default function Home(): JSXElement {
           <Heading level={2}>
             <T key="best-of-all-time" />
           </Heading>
-
           <ul class="flex flex-row gap-6">
             <For each={openings()}>
               {(item) => (
