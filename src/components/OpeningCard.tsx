@@ -1,6 +1,7 @@
 import { useNavigate } from "@solidjs/router";
 import { type JSXElement, type VoidProps } from "solid-js";
-import { T, useT } from "~/lib/i18n";
+import Button from "~/components/Button";
+import { useT } from "~/lib/i18n";
 
 type OpeningCardProps = {
   codename: string;
@@ -29,14 +30,12 @@ export default function OpeningCard(
 
         <div class="hidden flex-col gap-4 group-hover:flex">
           <span>{props.animeName}</span>
-          <button
-            class="w-full rounded-lg border-2 border-solid border-color-blue text-color-blue transition hover:bg-color-blue/25 hover:font-medium active:bg-color-blue active:font-medium active:text-color-light"
+          <Button
+            text={t("opening-card.more")}
             onClick={() => {
               navigate(`/op/${props.codename}`);
             }}
-          >
-            <T key="opening-card.more" />
-          </button>
+          />
         </div>
       </div>
     </article>
