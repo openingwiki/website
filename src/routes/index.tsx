@@ -1,5 +1,6 @@
 import { cache, createAsync, type RouteDefinition } from "@solidjs/router";
 import { For, Show, type JSXElement } from "solid-js";
+import Header from "~/components/Header";
 import Heading from "~/components/Heading";
 import OpeningCard from "~/components/OpeningCard";
 import { getOpenings } from "~/lib/api/routes/openings";
@@ -22,6 +23,8 @@ export default function Home(): JSXElement {
       when={error()}
       fallback={
         <>
+          <Header />
+
           <main class="flex flex-col p-6">
             <section class="flex flex-col gap-8">
               <Heading level={2}>
