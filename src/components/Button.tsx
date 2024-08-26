@@ -39,254 +39,236 @@ function colorVariant(color: Color): string[] {
   switch (color) {
     case "rosewater": {
       return [
-        "border-color-rosewater",
-        "text-color-rosewater",
-        "hover:bg-color-rosewater/25",
-        "active:bg-color-rosewater",
-        "active:text-color-dark",
+        "border-ctp-rosewater",
+        "text-ctp-rosewater",
+        "hover:bg-ctp-rosewater/25",
+        "active:bg-ctp-rosewater",
+        "active:text-ctp-base",
       ];
     }
     case "flamingo": {
       return [
-        "border-color-flamingo",
-        "text-color-flamingo",
-        "hover:bg-color-flamingo/25",
-        "active:bg-color-flamingo",
-        "active:text-color-dark",
+        "border-ctp-flamingo",
+        "text-ctp-flamingo",
+        "hover:bg-ctp-flamingo/25",
+        "active:bg-ctp-flamingo",
+        "active:text-ctp-base",
       ];
     }
     case "pink": {
       return [
-        "border-color-pink",
-        "text-color-pink",
-        "hover:bg-color-pink/25",
-        "active:bg-color-pink",
-        "active:text-color-dark",
+        "border-ctp-pink",
+        "text-ctp-pink",
+        "hover:bg-ctp-pink/25",
+        "active:bg-ctp-pink",
+        "active:text-ctp-base",
       ];
     }
     case "mauve": {
       return [
-        "border-color-mauve",
-        "text-color-mauve",
-        "hover:bg-color-mauve/25",
-        "active:bg-color-mauve",
-        "active:text-color-dark",
+        "border-ctp-mauve",
+        "text-ctp-mauve",
+        "hover:bg-ctp-mauve/25",
+        "active:bg-ctp-mauve",
+        "active:text-ctp-base",
       ];
     }
     case "red": {
       return [
-        "border-color-red",
-        "text-color-red",
-        "hover:bg-color-red/25",
-        "active:bg-color-red",
-        "active:text-color-dark",
+        "border-ctp-red",
+        "text-ctp-red",
+        "hover:bg-ctp-red/25",
+        "active:bg-ctp-red",
+        "active:text-ctp-base",
       ];
     }
     case "maroon": {
       return [
-        "border-color-maroon",
-        "text-color-maroon",
-        "hover:bg-color-maroon/25",
-        "active:bg-color-maroon",
-        "active:text-color-dark",
+        "border-ctp-maroon",
+        "text-ctp-maroon",
+        "hover:bg-ctp-maroon/25",
+        "active:bg-ctp-maroon",
+        "active:text-ctp-base",
       ];
     }
     case "peach": {
       return [
-        "border-color-peach",
-        "text-color-peach",
-        "hover:bg-color-peach/25",
-        "active:bg-color-peach",
-        "active:text-color-dark",
+        "border-ctp-peach",
+        "text-ctp-peach",
+        "hover:bg-ctp-peach/25",
+        "active:bg-ctp-peach",
+        "active:text-ctp-base",
       ];
     }
     case "yellow": {
       return [
-        "border-color-yellow",
-        "text-color-yellow",
-        "hover:bg-color-yellow/25",
-        "active:bg-color-yellow",
-        "active:text-color-dark",
+        "border-ctp-yellow",
+        "text-ctp-yellow",
+        "hover:bg-ctp-yellow/25",
+        "active:bg-ctp-yellow",
+        "active:text-ctp-base",
       ];
     }
     case "green": {
       return [
-        "border-color-green",
-        "text-color-green",
-        "hover:bg-color-green/25",
-        "active:bg-color-green",
-        "active:text-color-dark",
+        "border-ctp-green",
+        "text-ctp-green",
+        "hover:bg-ctp-green/25",
+        "active:bg-ctp-green",
+        "active:text-ctp-base",
       ];
     }
     case "teal": {
       return [
-        "border-color-teal",
-        "text-color-teal",
-        "hover:bg-color-teal/25",
-        "active:bg-color-teal",
-        "active:text-color-dark",
+        "border-ctp-teal",
+        "text-ctp-teal",
+        "hover:bg-ctp-teal/25",
+        "active:bg-ctp-teal",
+        "active:text-ctp-base",
       ];
     }
     case "sky": {
       return [
-        "border-color-sky",
-        "text-color-sky",
-        "hover:bg-color-sky/25",
-        "active:bg-color-sky",
-        "active:text-color-dark",
+        "border-ctp-sky",
+        "text-ctp-sky",
+        "hover:bg-ctp-sky/25",
+        "active:bg-ctp-sky",
+        "active:text-ctp-base",
       ];
     }
     case "sapphire": {
       return [
-        "border-color-sapphire",
-        "text-color-sapphire",
-        "hover:bg-color-sapphire/25",
-        "active:bg-color-sapphire",
-        "active:text-color-dark",
+        "border-ctp-sapphire",
+        "text-ctp-sapphire",
+        "hover:bg-ctp-sapphire/25",
+        "active:bg-ctp-sapphire",
+        "active:text-ctp-base",
       ];
     }
     case "blue": {
       return [
-        "border-color-blue",
-        "text-color-blue",
-        "hover:bg-color-blue/25",
-        "active:bg-color-blue",
-        "active:text-color-dark",
+        "border-ctp-blue",
+        "text-ctp-blue",
+        "hover:bg-ctp-blue/25",
+        "active:bg-ctp-blue",
+        "active:text-ctp-base",
       ];
     }
     case "lavender": {
       return [
-        "border-color-lavender",
-        "text-color-lavender",
-        "hover:bg-color-lavender/25",
-        "active:bg-color-lavender",
-        "active:text-color-dark",
+        "border-ctp-lavender",
+        "text-ctp-lavender",
+        "hover:bg-ctp-lavender/25",
+        "active:bg-ctp-lavender",
+        "active:text-ctp-base",
       ];
     }
     case "text": {
       return [
-        "border-color-text",
-        "text-color-text",
-        "hover:bg-color-text/25",
-        "active:bg-color-text",
-        "active:text-color-base",
+        "border-ctp-text",
+        "text-ctp-text",
+        "hover:bg-ctp-text/25",
+        "active:bg-ctp-text",
+        "active:text-ctp-base",
       ];
     }
-    case "subtext-1": {
+    case "subtext1": {
       return [
-        "border-color-subtext-1",
-        "text-color-subtext-1",
-        "hover:bg-color-subtext-1/25",
-        "active:bg-color-subtext-1",
-        "active:text-color-dark",
+        "border-ctp-subtext1",
+        "text-ctp-subtext1",
+        "hover:bg-ctp-subtext1/25",
+        "active:bg-ctp-subtext1",
+        "active:text-ctp-base",
       ];
     }
-    case "subtext-0": {
+    case "subtext0": {
       return [
-        "border-color-subtext-0",
-        "text-color-subtext-0",
-        "hover:bg-color-subtext-0/25",
-        "active:bg-color-subtext-0",
-        "active:text-color-dark",
+        "border-ctp-subtext0",
+        "text-ctp-subtext0",
+        "hover:bg-ctp-subtext0/25",
+        "active:bg-ctp-subtext0",
+        "active:text-ctp-base",
       ];
     }
-    case "overlay-2": {
+    case "overlay2": {
       return [
-        "border-color-overlay-2",
-        "text-color-overlay-2",
-        "hover:bg-color-overlay-2/25",
-        "active:bg-color-overlay-2",
-        "active:text-color-dark",
+        "border-ctp-overlay2",
+        "text-ctp-overlay2",
+        "hover:bg-ctp-overlay2/25",
+        "active:bg-ctp-overlay2",
+        "active:text-ctp-base",
       ];
     }
-    case "overlay-1": {
+    case "overlay1": {
       return [
-        "border-color-overlay-1",
-        "text-color-overlay-1",
-        "hover:bg-color-overlay-1/25",
-        "active:bg-color-overlay-1",
-        "active:text-color-dark",
+        "border-ctp-overlay1",
+        "text-ctp-overlay1",
+        "hover:bg-ctp-overlay1/25",
+        "active:bg-ctp-overlay1",
+        "active:text-ctp-base",
       ];
     }
-    case "overlay-0": {
+    case "overlay0": {
       return [
-        "border-color-overlay-0",
-        "text-color-overlay-0",
-        "hover:bg-color-overlay-0/25",
-        "active:bg-color-overlay-0",
-        "active:text-color-dark",
+        "border-ctp-overlay0",
+        "text-ctp-overlay0",
+        "hover:bg-ctp-overlay0/25",
+        "active:bg-ctp-overlay0",
+        "active:text-ctp-base",
       ];
     }
-    case "surface-2": {
+    case "surface2": {
       return [
-        "border-color-surface-2",
-        "text-color-surface-2",
-        "hover:bg-color-surface-2/25",
-        "active:bg-color-surface-2",
-        "active:text-color-dark",
+        "border-ctp-surface2",
+        "text-ctp-surface2",
+        "hover:bg-ctp-surface2/25",
+        "active:bg-ctp-surface2",
+        "active:text-ctp-base",
       ];
     }
-    case "surface-1": {
+    case "surface1": {
       return [
-        "border-color-surface-1",
-        "text-color-surface-1",
-        "hover:bg-color-surface-1/25",
-        "active:bg-color-surface-1",
-        "active:text-color-dark",
+        "border-ctp-surface1",
+        "text-ctp-surface1",
+        "hover:bg-ctp-surface1/25",
+        "active:bg-ctp-surface1",
+        "active:text-ctp-base",
       ];
     }
-    case "surface-0": {
+    case "surface0": {
       return [
-        "border-color-surface-0",
-        "text-color-surface-0",
-        "hover:bg-color-surface-0/25",
-        "active:bg-color-surface-0",
-        "active:text-color-dark",
+        "border-ctp-surface0",
+        "text-ctp-surface0",
+        "hover:bg-ctp-surface0/25",
+        "active:bg-ctp-surface0",
+        "active:text-ctp-base",
       ];
     }
     case "base": {
       return [
-        "border-color-base",
-        "text-color-base",
-        "hover:bg-color-base/25",
-        "active:bg-color-base",
-        "active:text-color-text",
+        "border-ctp-base",
+        "text-ctp-base",
+        "hover:bg-ctp-base/25",
+        "active:bg-ctp-base",
+        "active:text-ctp-text",
       ];
     }
     case "mantle": {
       return [
-        "border-color-mantle",
-        "text-color-mantle",
-        "hover:bg-color-mantle/25",
-        "active:bg-color-mantle",
-        "active:text-color-text",
+        "border-ctp-mantle",
+        "text-ctp-mantle",
+        "hover:bg-ctp-mantle/25",
+        "active:bg-ctp-mantle",
+        "active:text-ctp-text",
       ];
     }
     case "crust": {
       return [
-        "border-color-crust",
-        "text-color-crust",
-        "hover:bg-color-crust/25",
-        "active:bg-color-crust",
-        "active:text-color-text",
-      ];
-    }
-    case "light": {
-      return [
-        "border-color-light",
-        "text-color-light",
-        "hover:bg-color-light/25",
-        "active:bg-color-light",
-        "active:text-color-dark",
-      ];
-    }
-    case "dark": {
-      return [
-        "border-color-dark",
-        "text-color-dark",
-        "hover:bg-color-dark/25",
-        "active:bg-color-dark",
-        "active:text-color-light",
+        "border-ctp-crust",
+        "text-ctp-crust",
+        "hover:bg-ctp-crust/25",
+        "active:bg-ctp-crust",
+        "active:text-ctp-text",
       ];
     }
     default: {

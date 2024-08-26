@@ -55,10 +55,10 @@ export default function Opening(): JSXElement {
                 alt={t("opening-card.thumbnail", { of: opening()!.name })}
               />
               <div class="flex flex-col gap-2">
-                <h2 class="text-3xl font-semibold text-color-green">
+                <h2 class="text-3xl font-semibold text-ctp-green">
                   {opening()!.name}
                 </h2>
-                <span class="text-color-subtext-0">{opening()!.animeName}</span>
+                <span class="text-ctp-subtext0">{opening()!.animeName}</span>
               </div>
             </section>
           </main>

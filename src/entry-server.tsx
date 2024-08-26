@@ -12,7 +12,9 @@ export default createHandler(() => (
           <link rel="icon" href="/favicon.ico" />
           {assets}
         </head>
-        <body>
+
+        {/* FIXME: match with the Tailwind config. */}
+        <body id="body" class="ctp-macchiato">
           <div id="app">{children}</div>
           {scripts}
         </body>

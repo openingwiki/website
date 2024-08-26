@@ -17,14 +17,14 @@ export default function OpeningCard(
   const t = useT();
 
   return (
-    <article class="group flex w-64 flex-col gap-2 rounded-2xl text-center transition-all hover:scale-105 hover:bg-color-surface-0 hover:shadow">
+    <article class="group flex w-64 flex-col gap-2 rounded-2xl text-center transition-all hover:scale-105 hover:bg-ctp-surface0 hover:shadow">
       <img
         class="aspect-square rounded-2xl"
         src={props.thumbnailLink.toString()}
         alt={t("opening-card.thumbnail", { of: props.animeName })}
       />
       <div class="flex flex-col gap-1 px-4 pb-4">
-        <h1 class="text-lg font-medium text-color-green group-hover:font-semibold">
+        <h1 class="text-lg font-medium text-ctp-green group-hover:font-semibold">
           {props.name}
         </h1>
 
