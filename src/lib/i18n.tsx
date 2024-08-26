@@ -1,4 +1,4 @@
-import { Trans, TransProvider, useTransContext } from "@mbarzda/solid-i18next";
+import { TransProvider, useTransContext } from "@mbarzda/solid-i18next";
 import { type JSXElement, type ParentProps } from "solid-js";
 import resources from "../../locales";
 
@@ -30,12 +30,4 @@ export function useT(): (
 ) => string {
   const [t] = useTransContext();
   return (key, options) => t(key, options);
-}
-
-interface TProps {
-  key: Key;
-}
-
-export function T(props: TProps): JSXElement {
-  return <Trans key={props.key} />;
 }

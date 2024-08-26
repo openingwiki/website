@@ -4,7 +4,7 @@ import Header from "~/components/Header";
 import Heading from "~/components/Heading";
 import OpeningCard from "~/components/OpeningCard";
 import { getOpenings } from "~/lib/api/routes/openings";
-import { T } from "~/lib/i18n";
+import { useT } from "~/lib/i18n";
 
 const loadOpenings = cache(async () => {
   return await getOpenings(20, 0);
@@ -15,6 +15,7 @@ export const route = {
 } satisfies RouteDefinition;
 
 export default function Home(): JSXElement {
+  const t = useT();
   const openings = createAsync(() => loadOpenings());
 
   const error = () => openings() === undefined;
@@ -27,9 +28,7 @@ export default function Home(): JSXElement {
 
           <main class="flex flex-col p-6">
             <section class="flex flex-col gap-8">
-              <Heading level={2}>
-                <T key="home.all-openings" />
-              </Heading>
+              <Heading text={t("home.all-openings")} level={2} />
               <ul class="flex flex-row gap-6">
                 <For each={openings()}>
                   {(item) => (

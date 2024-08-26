@@ -52,7 +52,7 @@ export default function Opening(): JSXElement {
               <img
                 class="aspect-square size-32 rounded-lg"
                 src={opening()!.thumbnailLink.toString()}
-                alt={t("thumbnail", { of: opening()!.name })}
+                alt={t("opening-card.thumbnail", { of: opening()!.name })}
               />
               <div class="flex flex-col gap-2">
                 <h2 class="text-3xl font-semibold text-color-green">
