@@ -2,7 +2,7 @@ import { useNavigate } from "@solidjs/router";
 import { type JSXElement } from "solid-js";
 import Button from "~/components/Button";
 import { useT } from "~/lib/i18n";
-import { switchMode } from "~/lib/style";
+import { switchColorscheme } from "~/lib/style";
 
 export default function Header(): JSXElement {
   const t = useT();
@@ -18,7 +18,7 @@ export default function Header(): JSXElement {
       >
         {t("app-name")}
       </button>
-      <Button text="Sign in" onClick={switchMode} />
+      <Button text="Sign in" onClick={switchColorscheme} />
     </header>
   );
 }

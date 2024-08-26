@@ -15,8 +15,7 @@ export default createHandler(() => (
           {assets}
         </head>
 
-        {/* TODO: match with the Tailwind config */}
-        <body id="body" class="ctp-macchiato">
+        <body class="ctp-latte dark:ctp-macchiato">
           <div id="app">{children}</div>
           {scripts}
         </body>

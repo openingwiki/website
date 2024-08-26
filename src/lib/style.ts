@@ -26,22 +26,42 @@ export type Color =
   | "mantle"
   | "crust";
 
-function body(): HTMLBodyElement {
-  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-  return document.getElementById("body")! as HTMLBodyElement;
+type Colorscheme = "light" | "dark" | "os";
+
+type Class = "ctp-latte" | "ctp-macchiato" | "ctp-latte dark:ctp-macchiato";
+
+export function setColorscheme(colorscheme: Colorscheme): void {
+  document.body.className = colorschemeToClass(colorscheme);
 }
 
-export function setLightMode(): void {
-  body().className = "ctp-latte";
+export function currentColorscheme(): Colorscheme {
+  return classToColorscheme(document.body.className as Class);
 }
 
-export function setDarkMode(): void {
-  body().className = "ctp-macchiato";
+export function switchColorscheme(): void {
+  const colorscheme = currentColorscheme();
+
+  switch (colorscheme) {
+    case "light": {
+      setColorscheme("dark");
+      break;
+    }
+    case "dark": {
+      setColorscheme("os");
+      break;
+    }
+    case "os": {
+      setColorscheme("light");
+      break;
+    }
+    default: {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const _exhaustiveCheck: never = colorscheme;
+    }
+  }
 }
 
-export function currentMode(): "light" | "dark" {
-  const className = body().className;
-
+function classToColorscheme(className: Class): Colorscheme {
   switch (className) {
     case "ctp-latte": {
       return "light";
@@ -49,27 +69,32 @@ export function currentMode(): "light" | "dark" {
     case "ctp-macchiato": {
       return "dark";
     }
+    case "ctp-latte dark:ctp-macchiato": {
+      return "os";
+    }
     default: {
-      throw new Error(`unknown classname for body (${className})`);
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const _exhaustiveCheck: never = className;
+      throw new Error(`unknown class for body (${className as string})`);
     }
   }
 }
 
-export function switchMode(): void {
-  const current = currentMode();
-
-  switch (current) {
+function colorschemeToClass(colorscheme: Colorscheme): Class {
+  switch (colorscheme) {
     case "light": {
-      setDarkMode();
-      break;
+      return "ctp-latte";
     }
     case "dark": {
-      setLightMode();
-      break;
+      return "ctp-macchiato";
+    }
+    case "os": {
+      return "ctp-latte dark:ctp-macchiato";
     }
     default: {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const _exhaustiveCheck: never = current;
+      const _exhaustiveCheck: never = colorscheme;
+      throw new Error(`unknown mode (${colorscheme as string})`);
     }
   }
 }
