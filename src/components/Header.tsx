@@ -8,7 +8,7 @@ export default function Header(): JSXElement {
     <header class="flex h-12 flex-row items-center justify-between bg-color-mantle p-6">
       {t("app-name")}
 
-      <Button text="Sign in" color="blue" />
+      <Button text="Sign in" />
     </header>
   );
 }
