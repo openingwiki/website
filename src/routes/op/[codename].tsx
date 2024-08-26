@@ -8,6 +8,7 @@ import {
   type RouteDefinition,
 } from "@solidjs/router";
 import { Show, type JSXElement } from "solid-js";
+import Header from "~/components/Header";
 import { getOpening } from "~/lib/api/routes/openings";
 import { useT } from "~/lib/i18n";
 import { BrandedTitle } from "~/lib/meta";
@@ -37,6 +38,8 @@ export default function Opening(): JSXElement {
           </Show>
 
           <BrandedTitle page={opening()!.name} />
+
+          <Header />
 
           <main class="flex flex-col items-center gap-8 p-12">
             <iframe

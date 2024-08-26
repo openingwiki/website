@@ -24,7 +24,9 @@ export default function Home(): JSXElement {
       when={error()}
       fallback={
         <>
-          <Header />
+          <div class="sticky top-0 z-10">
+            <Header />
+          </div>
 
           <main class="flex flex-col p-6">
             <section class="flex flex-col gap-8">
