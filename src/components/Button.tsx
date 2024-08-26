@@ -11,7 +11,7 @@ type ButtonProps = {
 
 export default function Button(props: VoidProps<ButtonProps>): JSXElement {
   const hardButtonClass =
-    "text-nowrap rounded-lg border-2 border-solid px-3 py-1 transition hover:font-medium active:font-medium";
+    "text-nowrap rounded-lg border-2 border-solid px-4 py-1 font-medium transition hover:font-semibold active:font-semibold";
 
   const buttonClass = () => {
     let color: Color;
