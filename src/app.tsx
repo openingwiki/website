@@ -5,7 +5,6 @@ import { FileRoutes } from "@solidjs/start/router";
 import { type JSXElement } from "solid-js";
 import Default from "~/layouts/Default";
 import { I18n } from "~/lib/i18n";
-import { BrandedTitle } from "~/lib/meta";
 import "./app.css";
 
 export default function App(): JSXElement {
@@ -13,7 +12,6 @@ export default function App(): JSXElement {
     <I18n>
       <MetaProvider>
         {/* TODO */}
-        <BrandedTitle />
         <Router root={Default}>
           <FileRoutes />
         </Router>
