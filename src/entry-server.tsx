@@ -11,7 +11,7 @@ export default createHandler(() => (
           <meta charset="utf-8" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           {/* TODO: make the favicon vector */}
-          <link rel="icon" href="/favicon.ico" />
+          <link rel="icon" type="image/png" href="/favicon.png" />
           {assets}
         </head>
 
