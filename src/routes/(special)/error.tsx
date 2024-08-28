@@ -9,7 +9,7 @@ export default function Error(): JSXElement {
     <>
       <BrandedTitle page={t("error.title")} />
 
-      <main>{t("error.message")}</main>
+      <p>{t("error.message")}</p>
     </>
   );
 }
