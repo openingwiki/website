@@ -27,6 +27,6 @@ export default ts.config(
   },
   prettier,
   {
-    ignores: [".output/", ".vinxi/", "src/paraglide/"],
+    ignores: [".output/", ".vinxi/"],
   },
 );
