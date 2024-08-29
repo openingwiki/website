@@ -1,5 +1,5 @@
 import { Suspense, type JSXElement, type ParentProps } from "solid-js";
-import Header from "~/components/Header";
+import Header from "~/components/header";
 import { BrandedTitle } from "~/lib/meta";
 
 export default function Default(props: ParentProps): JSXElement {

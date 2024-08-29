@@ -1,7 +1,7 @@
 import { cache, createAsync, type RouteDefinition } from "@solidjs/router";
 import { For, Show, type JSXElement } from "solid-js";
-import Heading from "~/components/Heading";
-import OpeningCard from "~/components/OpeningCard";
+import Heading from "~/components/heading";
+import OpeningCard from "~/components/opening-card";
 import { getOpenings } from "~/lib/api/routes/openings";
 import { useT } from "~/lib/i18n";
 

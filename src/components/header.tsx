@@ -1,6 +1,6 @@
 import { useNavigate } from "@solidjs/router";
 import { type JSXElement } from "solid-js";
-import Button from "~/components/Button";
+import Button from "~/components/button";
 import { useT } from "~/lib/i18n";
 import { switchColorscheme } from "~/lib/style";
 
