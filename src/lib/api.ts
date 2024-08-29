@@ -1,14 +1,14 @@
-import { z, type ZodType } from "zod";
+import { z, type ZodTypeAny } from "zod";
 
-export type Result<T extends ZodType> = Promise<z.infer<T> | undefined>;
+export type Result<T extends ZodTypeAny> = Promise<z.infer<T> | undefined>;
 
-type GetParams<T extends ZodType> = {
+type GetParams<T extends ZodTypeAny> = {
   route: string;
   queryParams?: QueryParams;
   schema: T;
 };
 
-export async function get<T extends ZodType>(
+export async function get<T extends ZodTypeAny>(
   params: GetParams<T>,
 ): Promise<z.infer<T> | undefined> {
   const url = apiUrl(params.route, params.queryParams);
