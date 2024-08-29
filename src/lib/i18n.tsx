@@ -16,7 +16,7 @@ type Leaves<T> = T extends object
 
 type Key = Leaves<typeof defaultLocale>;
 
-export function I18n(props: ParentProps): JSXElement {
+export function I18nProvider(props: ParentProps): JSXElement {
   return (
     <TransProvider lng={DEFAULT_LOCALE} options={{ resources }}>
       {props.children}
