@@ -12,20 +12,20 @@ import { getOpening } from "~/lib/api/routes/openings";
 import { useT } from "~/lib/i18n";
 import { BrandedTitle } from "~/lib/meta";
 
-const proloadOpening = cache(async (codename: string) => {
+const preloadOpening = cache(async (codename: string) => {
   "use server";
   return await getOpening(codename);
 }, "opening");
 
 export const route: RouteDefinition = {
-  preload: ({ params }) => proloadOpening(params.codename),
+  preload: ({ params }) => preloadOpening(params.codename),
 };
 
 export default function Opening(): JSXElement {
   const params = useParams();
   const t = useT();
 
-  const opening = createAsync(() => proloadOpening(params.codename));
+  const opening = createAsync(() => preloadOpening(params.codename));
 
   return (
     <Switch>
