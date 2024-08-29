@@ -2,11 +2,11 @@ import { Title } from "@solidjs/meta";
 import { type JSXElement, Show, type VoidProps } from "solid-js";
 import { useT } from "~/lib/i18n";
 
-type BrandedTitleProps = {
+interface BrandedTitleProps extends VoidProps {
   page?: string;
-};
+}
 
-export function BrandedTitle(props: VoidProps<BrandedTitleProps>): JSXElement {
+export function BrandedTitle(props: BrandedTitleProps): JSXElement {
   const t = useT();
 
   return (

@@ -1,15 +1,15 @@
-import { JSX, type JSXElement, VoidProps } from "solid-js";
+import { type JSX, type JSXElement, VoidProps } from "solid-js";
 import { twMerge } from "tailwind-merge";
 import { type Color } from "~/lib/style";
 
-type ButtonProps = {
+interface ButtonProps extends VoidProps {
   class?: string;
   color?: Color;
   text: string;
   onClick?: JSX.EventHandlerUnion<HTMLButtonElement, MouseEvent>;
-};
+}
 
-export default function Button(props: VoidProps<ButtonProps>): JSXElement {
+export default function Button(props: ButtonProps): JSXElement {
   const hardButtonClass =
     "text-nowrap rounded-lg border-2 border-solid px-4 py-1 font-medium transition hover:font-semibold active:font-semibold";
 

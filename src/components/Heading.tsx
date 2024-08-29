@@ -1,13 +1,13 @@
 import { Match, Switch, type JSXElement, type VoidProps } from "solid-js";
 import { twMerge } from "tailwind-merge";
 
-type HeadingProps = {
+interface HeadingProps extends VoidProps {
   class?: string;
   text: string;
   level?: number;
-};
+}
 
-export default function Heading(props: VoidProps<HeadingProps>): JSXElement {
+export default function Heading(props: HeadingProps): JSXElement {
   const level = () => props.level ?? 1;
 
   return (

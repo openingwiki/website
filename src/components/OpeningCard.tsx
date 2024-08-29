@@ -3,16 +3,14 @@ import { type JSXElement, type VoidProps } from "solid-js";
 import Button from "~/components/Button";
 import { useT } from "~/lib/i18n";
 
-type OpeningCardProps = {
+interface OpeningCardProps extends VoidProps {
   codename: string;
   name: string;
   animeName: string;
   thumbnailLink: URL;
-};
+}
 
-export default function OpeningCard(
-  props: VoidProps<OpeningCardProps>,
-): JSXElement {
+export default function OpeningCard(props: OpeningCardProps): JSXElement {
   const navigate = useNavigate();
   const t = useT();
 
