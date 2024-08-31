@@ -14,26 +14,27 @@ export default function OpeningCard(props: OpeningCardProps): JSXElement {
   const navigate = useNavigate();
   const t = useT();
 
+  const openOpening = () => {
+    navigate(`/op/${props.codename}`);
+  };
+
   return (
-    <article class="group flex w-64 flex-col gap-2 rounded-2xl text-center transition-all hover:scale-105 hover:bg-ctp-surface0 hover:shadow">
-      <img
-        class="aspect-square rounded-2xl"
-        src={props.thumbnailLink.toString()}
-        alt={t("opening-card.thumbnail", { of: props.animeName })}
-      />
-      <div class="flex flex-col gap-1 px-4 pb-4">
-        <h1 class="text-lg font-medium text-ctp-green group-hover:font-semibold">
+    <article class="group relative flex w-64 flex-col gap-2 rounded-t-2xl text-center transition hover:z-30 hover:scale-105 hover:bg-ctp-surface0 hover:shadow">
+      <button class="aspect-square" onClick={openOpening}>
+        <img
+          class="size-full rounded-2xl group-hover:bg-ctp-surface0"
+          src={props.thumbnailLink.toString()}
+          alt={t("opening-card.thumbnail", { of: props.animeName })}
+        />
+      </button>
+      <div class="pointer-events-none absolute top-full flex w-full flex-col gap-1 self-center rounded-b-2xl px-4 pb-4 pt-2 transition group-hover:pointer-events-auto group-hover:bg-ctp-surface0">
+        <h1 class="pointer-events-auto text-lg font-medium text-ctp-green group-hover:font-semibold">
           {props.name}
         </h1>
 
-        <div class="hidden flex-col gap-4 group-hover:flex">
+        <div class="flex flex-col gap-4 opacity-0 group-hover:opacity-100">
           <span>{props.animeName}</span>
-          <Button
-            text={t("opening-card.more")}
-            onClick={() => {
-              navigate(`/op/${props.codename}`);
-            }}
-          />
+          <Button text={t("opening-card.more")} onClick={openOpening} />
         </div>
       </div>
     </article>
