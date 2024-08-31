@@ -19,15 +19,15 @@ export default function OpeningCard(props: OpeningCardProps): JSXElement {
   };
 
   return (
-    <article class="group relative flex w-64 flex-col gap-2 rounded-t-2xl text-center transition hover:z-10 hover:scale-105 hover:bg-ctp-surface0 hover:shadow">
+    <article class="group relative flex w-64 flex-col gap-2 rounded-t-2xl text-center transition hover:z-10 hover:scale-105 hover:bg-ctp-surface0/95 hover:shadow hover:backdrop-blur-sm">
       <button class="aspect-square" onClick={openOpening}>
         <img
-          class="size-full rounded-2xl group-hover:bg-ctp-surface0"
+          class="size-full rounded-2xl"
           src={props.thumbnailLink.toString()}
           alt={t("opening-card.thumbnail", { of: props.animeName })}
         />
       </button>
-      <div class="pointer-events-none absolute top-full flex w-full flex-col gap-1 self-center rounded-b-2xl px-4 pb-4 pt-2 transition group-hover:pointer-events-auto group-hover:bg-ctp-surface0">
+      <div class="pointer-events-none absolute top-full flex w-full flex-col gap-1 self-center rounded-b-2xl px-4 pb-4 pt-2 transition group-hover:pointer-events-auto group-hover:bg-ctp-surface0/95 group-hover:backdrop-blur-sm">
         <h1 class="pointer-events-auto text-lg font-medium text-ctp-green group-hover:font-semibold">
           {props.name}
         </h1>
