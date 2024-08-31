@@ -21,23 +21,29 @@ export default function Home(): JSXElement {
   return (
     <Switch>
       <Match when={openings()}>
-        <section class="flex flex-col gap-8">
-          <Heading text={t("home.all-openings")} level={2} />
-          <ul class="flex flex-row gap-6">
-            <For each={openings()}>
-              {(item) => (
-                <li>
-                  <OpeningCard
-                    codename={item.codename}
-                    name={item.name}
-                    animeName={item.animeName}
-                    thumbnailLink={item.thumbnailLink}
-                  />
-                </li>
-              )}
-            </For>
-          </ul>
-        </section>
+        <div class="flex flex-col gap-20">
+          <For each={[undefined, undefined]}>
+            {() => (
+              <section class="flex flex-col gap-8">
+                <Heading text={t("home.all-openings")} level={2} />
+                <ul class="flex flex-row gap-6">
+                  <For each={openings()}>
+                    {(item) => (
+                      <li>
+                        <OpeningCard
+                          codename={item.codename}
+                          name={item.name}
+                          animeName={item.animeName}
+                          thumbnailLink={item.thumbnailLink}
+                        />
+                      </li>
+                    )}
+                  </For>
+                </ul>
+              </section>
+            )}
+          </For>
+        </div>
       </Match>
     </Switch>
   );
