@@ -7,7 +7,7 @@ export default function Default(props: ParentProps): JSXElement {
     <>
       <BrandedTitle />
 
-      <div class="sticky top-0 z-10">
+      <div class="sticky top-0 z-40">
         <Header />
       </div>
 

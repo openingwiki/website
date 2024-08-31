@@ -19,7 +19,7 @@ export default function OpeningCard(props: OpeningCardProps): JSXElement {
   };
 
   return (
-    <article class="group relative flex w-64 flex-col gap-2 rounded-t-2xl text-center transition hover:z-30 hover:scale-105 hover:bg-ctp-surface0 hover:shadow">
+    <article class="group relative flex w-64 flex-col gap-2 rounded-t-2xl text-center transition hover:z-10 hover:scale-105 hover:bg-ctp-surface0 hover:shadow">
       <button class="aspect-square" onClick={openOpening}>
         <img
           class="size-full rounded-2xl group-hover:bg-ctp-surface0"
