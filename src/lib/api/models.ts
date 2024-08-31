@@ -5,7 +5,7 @@ export const Opening = z
     // `animeName`
     anime_name: z.string(),
     codename: z.string(),
-    id: z.number().positive(),
+    id: z.number().int().positive(),
     name: z.string(),
     // `thumbnailLink`
     thumbnail_link: z
