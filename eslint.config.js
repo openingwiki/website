@@ -1,4 +1,5 @@
 import js from "@eslint/js";
+import query from "@tanstack/eslint-plugin-query";
 import prettier from "eslint-config-prettier";
 import jsxA11y from "eslint-plugin-jsx-a11y";
 import solid from "eslint-plugin-solid";
@@ -15,6 +16,7 @@ export default ts.config(
   { languageOptions: { globals: globals.browser } },
   ...tailwind.configs["flat/recommended"],
   jsxA11y.flatConfigs.strict,
+  ...query.configs["flat/recommended"],
   {
     files: ["**/*.{ts,tsx}"],
     ...solid.configs["flat/typescript"],
