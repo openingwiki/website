@@ -27,3 +27,8 @@ export const Opening = z
     } = rename;
     return { ...rest, animeName, thumbnailLink, youtubeEmbedLink };
   });
+
+export const User = z.object({
+  id: z.number().int().positive(),
+  username: z.string(),
+});
