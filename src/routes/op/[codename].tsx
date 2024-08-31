@@ -8,7 +8,7 @@ import {
   type RouteDefinition,
 } from "@solidjs/router";
 import { Match, Show, Switch, type JSXElement } from "solid-js";
-import { getOpening } from "~/lib/api/routes/openings";
+import { getOpening } from "~/lib/api/routes/openings/codename";
 import { useT } from "~/lib/i18n";
 import { BrandedTitle } from "~/lib/meta";
 

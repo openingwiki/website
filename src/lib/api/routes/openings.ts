@@ -12,10 +12,3 @@ export async function getOpenings(
     schema: z.array(Opening),
   });
 }
-
-export async function getOpening(codename: string): Result<typeof Opening> {
-  return await get({
-    route: `/openings/${codename}`,
-    schema: Opening,
-  });
-}
