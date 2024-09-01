@@ -8,8 +8,6 @@ import { BrandedTitle } from "~/lib/meta";
 
 export const route: RouteDefinition = {
   preload: async ({ params }) => {
-    "use server";
-
     const codename = params.codename.toLowerCase();
 
     const queryClient = useQueryClient();
