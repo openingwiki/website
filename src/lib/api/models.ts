@@ -1,5 +1,9 @@
 import { z } from "zod";
 
+export const AccessToken = z.object({
+  token: z.string(),
+});
+
 export const Opening = z
   .object({
     // `animeName`
