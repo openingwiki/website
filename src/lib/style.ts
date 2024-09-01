@@ -34,31 +34,36 @@ export function setColorscheme(colorscheme: Colorscheme): void {
   document.body.className = colorschemeToClass(colorscheme);
 }
 
-export function currentColorscheme(): Colorscheme {
-  return classToColorscheme(document.body.className as Class);
-}
-
-export function switchColorscheme(): void {
-  const colorscheme = currentColorscheme();
-
+function nextColorscheme(colorscheme: Colorscheme): Colorscheme {
   switch (colorscheme) {
     case "light": {
-      setColorscheme("dark");
-      break;
+      return "dark";
     }
     case "dark": {
-      setColorscheme("os");
-      break;
+      return "os";
     }
     case "os": {
-      setColorscheme("light");
-      break;
+      return "light";
     }
     default: {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const _exhaustiveCheck: never = colorscheme;
+      return colorscheme;
     }
   }
+}
+
+export function switchColorscheme(): Colorscheme {
+  const current = currentColorscheme();
+  const next = nextColorscheme(current);
+
+  setColorscheme(next);
+
+  return next;
+}
+
+function currentColorscheme(): Colorscheme {
+  return classToColorscheme(document.body.className as Class);
 }
 
 function classToColorscheme(className: Class): Colorscheme {

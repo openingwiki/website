@@ -1,5 +1,5 @@
 import { useNavigate } from "@solidjs/router";
-import { type JSXElement } from "solid-js";
+import { createSignal, type JSXElement } from "solid-js";
 import Button from "~/components/button";
 import { useT } from "~/lib/i18n";
 import { switchColorscheme } from "~/lib/style";
@@ -7,6 +7,8 @@ import { switchColorscheme } from "~/lib/style";
 export default function Header(): JSXElement {
   const t = useT();
   const navigate = useNavigate();
+
+  const [colorscheme, setColorscheme] = createSignal("Colorscheme: os");
 
   return (
     <header class="flex h-16 flex-row items-center justify-between border-b border-ctp-surface0 bg-ctp-base/95 p-6 backdrop-blur">
@@ -18,7 +20,12 @@ export default function Header(): JSXElement {
       >
         {t("app-name")}
       </button>
-      <Button text="Sign in" onClick={switchColorscheme} />
+      <Button
+        text={colorscheme()}
+        onClick={() => {
+          setColorscheme(`Colorscheme: ${switchColorscheme()}`);
+        }}
+      />
     </header>
   );
 }
