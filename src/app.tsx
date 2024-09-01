@@ -10,10 +10,19 @@ import { I18nProvider } from "~/lib/i18n";
 import "./app.css";
 
 export default function App(): JSXElement {
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        // 15 minutes
+        staleTime: 1000 * 60 * 15,
+      },
+    },
+  });
+
   return (
     <Suspense>
       <I18nProvider>
-        <QueryClientProvider client={new QueryClient()}>
+        <QueryClientProvider client={queryClient}>
           <MetaProvider>
             {/* TODO */}
             <Router root={Default}>
