@@ -11,7 +11,7 @@ export default function Header(): JSXElement {
   const [colorscheme, setColorscheme] = createSignal("Colorscheme: os");
 
   return (
-    <header class="flex h-16 flex-row items-center justify-between border-b border-ctp-surface0 bg-ctp-base/95 p-6 backdrop-blur">
+    <header class="sticky top-0 z-40 flex h-16 flex-row items-center justify-between border-b border-ctp-surface0 bg-ctp-base/95 p-6 backdrop-blur">
       <button
         class="text-xl font-semibold transition duration-75 hover:text-ctp-blue active:font-bold"
         onClick={() => {

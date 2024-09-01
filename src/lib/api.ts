@@ -16,7 +16,7 @@ export async function get<T extends ZodTypeAny>(
 ): Promise<z.infer<T>> {
   const url = apiUrl(params.route, params.queryParams);
 
-  const jsonObject = await fetch(url).then(
+  const jsonObject = await fetch(url, { method: "GET" }).then(
     (response) => response.json() as unknown,
   );
 

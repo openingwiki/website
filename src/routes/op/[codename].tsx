@@ -2,7 +2,7 @@ import { Navigate, useParams, type RouteDefinition } from "@solidjs/router";
 import { createQuery, useQueryClient } from "@tanstack/solid-query";
 import { Show, type JSXElement } from "solid-js";
 import { QueryBoundary } from "~/components/query-boundary";
-import { getOpening } from "~/lib/api/routes/openings/[codename]";
+import { getOpening } from "~/lib/api/routes/(openings)/openings/[codename]";
 import { useT } from "~/lib/i18n";
 import { BrandedTitle } from "~/lib/meta";
 
@@ -23,12 +23,12 @@ export default function Opening(): JSXElement {
     <QueryBoundary
       query={openingQuery}
       errorFallback={() =>
-        // TODO
+        // TODO: add something
         t("error.message")
       }
     >
       {(opening) => (
-        <>
+        <main class="flex flex-col gap-12 p-6">
           <Show when={params.codename !== opening.codename}>
             <Navigate href={`../${opening.codename}`} />
           </Show>
@@ -57,7 +57,7 @@ export default function Opening(): JSXElement {
               <span class="text-ctp-subtext0">{opening.animeName}</span>
             </div>
           </section>
-        </>
+        </main>
       )}
     </QueryBoundary>
   );

@@ -24,7 +24,6 @@ export default function App(): JSXElement {
       <I18nProvider>
         <QueryClientProvider client={queryClient}>
           <MetaProvider>
-            {/* TODO */}
             <Router root={Default}>
               <FileRoutes />
             </Router>
