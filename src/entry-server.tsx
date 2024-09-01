@@ -16,7 +16,9 @@ export default createHandler(() => (
         </head>
 
         <body class="ctp-latte dark:ctp-macchiato">
-          <div id="app">{children}</div>
+          <div id="app" class="flex h-screen flex-col">
+            {children}
+          </div>
           {scripts}
         </body>
       </html>

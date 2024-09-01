@@ -4,6 +4,6 @@
 
 @layer base {
   body {
-    @apply min-h-screen bg-ctp-base font-sans text-ctp-text;
+    @apply bg-ctp-base font-sans text-ctp-text;
   }
 }

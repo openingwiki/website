@@ -20,12 +20,22 @@ export default function Header(): JSXElement {
       >
         {t("app-name")}
       </button>
-      <Button
-        text={colorscheme()}
-        onClick={() => {
-          setColorscheme(`Colorscheme: ${switchColorscheme()}`);
-        }}
-      />
+
+      <div class="flex flex-row gap-2">
+        <Button
+          text={colorscheme()}
+          onClick={() => {
+            setColorscheme(`Colorscheme: ${switchColorscheme()}`);
+          }}
+        />
+
+        <Button
+          text={t("header.sign-in")}
+          onClick={() => {
+            navigate("/login");
+          }}
+        />
+      </div>
     </header>
   );
 }

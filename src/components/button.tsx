@@ -1,36 +1,35 @@
-import { type JSX, type JSXElement, VoidProps } from "solid-js";
+import { type JSX, type JSXElement, mergeProps, VoidProps } from "solid-js";
 import { twMerge } from "tailwind-merge";
 import { type Color } from "~/lib/style";
 
 interface ButtonProps extends VoidProps {
   class?: string;
+  type?: "button" | "reset" | "submit";
   color?: Color;
   text: string;
   onClick?: JSX.EventHandlerUnion<HTMLButtonElement, MouseEvent>;
 }
 
 export default function Button(props: ButtonProps): JSXElement {
+  const merged = mergeProps(
+    { type: "button" as const, color: "blue" as Color },
+    props,
+  );
+
   const hardButtonClass =
     "text-nowrap rounded-lg border-2 border-solid px-4 py-1 font-medium transition hover:font-semibold active:font-semibold";
 
-  const buttonClass = () => {
-    let color: Color;
-    if (props.color !== undefined) {
-      color = props.color;
-    } else {
-      color = "blue";
-    }
-
-    return twMerge(hardButtonClass, props.class, colorVariant(color));
-  };
+  const buttonClass = () =>
+    twMerge(hardButtonClass, merged.class, colorVariant(merged.color));
 
   return (
     <button
       class={buttonClass()}
+      type={merged.type}
       // eslint-disable-next-line solid/reactivity
-      onClick={props.onClick}
+      onClick={merged.onClick}
     >
-      {props.text}
+      {merged.text}
     </button>
   );
 }

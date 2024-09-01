@@ -28,7 +28,7 @@ export default function Opening(): JSXElement {
       }
     >
       {(opening) => (
-        <main class="flex flex-col gap-12 p-6">
+        <main class="flex flex-col items-center gap-12 p-6">
           <Show when={params.codename !== opening.codename}>
             <Navigate href={`../${opening.codename}`} />
           </Show>
@@ -36,7 +36,7 @@ export default function Opening(): JSXElement {
           <BrandedTitle page={opening.name} />
 
           <iframe
-            class="aspect-video w-240 self-center rounded-xl shadow-lg"
+            class="aspect-video w-240 rounded-xl shadow-lg"
             title={opening.name}
             src={opening.youtubeEmbedLink.toString()}
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -44,7 +44,7 @@ export default function Opening(): JSXElement {
             allowfullscreen
           />
 
-          <section class="flex flex-row items-center gap-4 self-center">
+          <section class="flex flex-row items-center gap-4">
             <img
               class="aspect-square size-32 rounded-lg"
               src={opening.thumbnailLink.toString()}
