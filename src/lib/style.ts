@@ -48,7 +48,7 @@ function nextColorscheme(colorscheme: Colorscheme): Colorscheme {
     default: {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const _exhaustiveCheck: never = colorscheme;
-      return colorscheme;
+      throw new Error(`unknown mode (${colorscheme as string})`);
     }
   }
 }
