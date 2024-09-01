@@ -1,33 +1,32 @@
-import { cache, createAsync, type RouteDefinition } from "@solidjs/router";
-import { For, Match, Switch, type JSXElement } from "solid-js";
+import { createQuery } from "@tanstack/solid-query";
+import { For, type JSXElement } from "solid-js";
 import Heading from "~/components/heading";
 import OpeningCard from "~/components/opening-card";
+import { QueryBoundary } from "~/components/query-boundary";
 import { getOpenings } from "~/lib/api/routes/openings";
 import { useT } from "~/lib/i18n";
-
-const preloadOpenings = cache(async (limit: number, offset: number) => {
-  return await getOpenings(limit, offset);
-}, "openings");
-
-export const route: RouteDefinition = {
-  preload: () => preloadOpenings(20, 0),
-};
 
 export default function Home(): JSXElement {
   const t = useT();
 
-  const openings = createAsync(() => preloadOpenings(20, 0));
+  const openingsQuery = createQuery(() => getOpenings(20, 0));
 
   return (
-    <Switch>
-      <Match when={openings()}>
+    <QueryBoundary
+      query={openingsQuery}
+      errorFallback={() =>
+        // TODO
+        t("error.message")
+      }
+    >
+      {(openings) => (
         <div class="flex flex-col gap-20">
           <For each={[undefined, undefined]}>
             {() => (
               <section class="flex flex-col gap-8">
                 <Heading text={t("home.all-openings")} level={2} />
                 <ul class="flex flex-row gap-6">
-                  <For each={openings()}>
+                  <For each={openings}>
                     {(item) => (
                       <li>
                         <OpeningCard
@@ -44,7 +43,7 @@ export default function Home(): JSXElement {
             )}
           </For>
         </div>
-      </Match>
-    </Switch>
+      )}
+    </QueryBoundary>
   );
 }

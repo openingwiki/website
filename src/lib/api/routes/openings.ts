@@ -1,14 +1,18 @@
 import { z, ZodArray } from "zod";
-import { get, Result } from "~/lib/api";
+import { get, QueryResult } from "~/lib/api";
 import { Opening } from "~/lib/api/models";
 
-export async function getOpenings(
+export function getOpenings(
   limit?: number,
   offset?: number,
-): Result<ZodArray<typeof Opening>> {
-  return await get({
-    route: "/openings",
-    queryParams: { limit, offset },
-    schema: z.array(Opening),
-  });
+): QueryResult<ZodArray<typeof Opening>> {
+  return {
+    queryKey: ["openings", limit, offset],
+    queryFn: () =>
+      get({
+        route: "/openings",
+        queryParams: { limit, offset },
+        schema: z.array(Opening),
+      }),
+  };
 }

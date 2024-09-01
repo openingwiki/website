@@ -1,9 +1,15 @@
-import { get, Result } from "~/lib/api";
+import { get, QueryResult } from "~/lib/api";
 import { Opening } from "~/lib/api/models";
 
-export async function getOpening(codename: string): Result<typeof Opening> {
-  return await get({
-    route: `/openings/${codename}`,
-    schema: Opening,
-  });
+export function getOpening(codename: string): QueryResult<typeof Opening> {
+  const codenameLower = codename.toLowerCase();
+
+  return {
+    queryKey: ["openings", codenameLower],
+    queryFn: () =>
+      get({
+        route: `/openings/${codenameLower}`,
+        schema: Opening,
+      }),
+  };
 }

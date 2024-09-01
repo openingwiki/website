@@ -1,6 +1,9 @@
 import { z, type ZodTypeAny } from "zod";
 
-export type Result<T extends ZodTypeAny> = Promise<z.infer<T> | undefined>;
+export type QueryResult<T extends ZodTypeAny> = {
+  queryKey: unknown[];
+  queryFn: () => Promise<z.infer<T>>;
+};
 
 type GetParams<T extends ZodTypeAny> = {
   route: string;
@@ -10,31 +13,16 @@ type GetParams<T extends ZodTypeAny> = {
 
 export async function get<T extends ZodTypeAny>(
   params: GetParams<T>,
-): Promise<z.infer<T> | undefined> {
+): Promise<z.infer<T>> {
   const url = apiUrl(params.route, params.queryParams);
 
-  let response;
-  try {
-    response = await fetch(url);
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  } catch (_) {
-    return undefined;
-  }
+  const jsonObject = await fetch(url).then(
+    (response) => response.json() as unknown,
+  );
 
-  if (!response.ok) {
-    console.error(response);
-    return undefined;
-  }
+  const result = params.schema.parse(jsonObject) as T;
 
-  const result = params.schema.safeParse(await response.json());
-
-  if (result.success) {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-    return result.data;
-  } else {
-    console.error(result.error.errors);
-    return undefined;
-  }
+  return result;
 }
 
 type QueryParams = Record<string, string | number | undefined>;

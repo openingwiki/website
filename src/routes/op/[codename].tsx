@@ -8,15 +8,8 @@ import { BrandedTitle } from "~/lib/meta";
 
 export const route: RouteDefinition = {
   preload: async ({ params }) => {
-    const codename = params.codename.toLowerCase();
-
     const queryClient = useQueryClient();
-    await queryClient.prefetchQuery({
-      queryKey: ["opening", codename],
-      queryFn: () => getOpening(codename),
-    });
-
-    // TODO
+    await queryClient.prefetchQuery(getOpening(params.codename));
   },
 };
 
@@ -24,16 +17,11 @@ export default function Opening(): JSXElement {
   const params = useParams();
   const t = useT();
 
-  const codename = params.codename.toLowerCase();
-
-  const query = createQuery(() => ({
-    queryKey: ["opening", codename],
-    queryFn: () => getOpening(codename),
-  }));
+  const openingQuery = createQuery(() => getOpening(params.codename));
 
   return (
     <QueryBoundary
-      query={query}
+      query={openingQuery}
       errorFallback={() =>
         // TODO
         t("error.message")
