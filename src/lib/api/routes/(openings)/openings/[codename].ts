@@ -1,4 +1,4 @@
-import { get, QueryResult } from "~/lib/api";
+import { request, type QueryResult } from "~/lib/api";
 import { Opening } from "~/lib/api/models";
 
 export function getOpening(codename: string): QueryResult<typeof Opening> {
@@ -7,9 +7,10 @@ export function getOpening(codename: string): QueryResult<typeof Opening> {
   return {
     queryKey: ["openings", codenameLower],
     queryFn: () =>
-      get({
+      request({
+        method: "GET",
         route: `/openings/${codenameLower}`,
-        schema: Opening,
+        responseSchema: Opening,
       }),
   };
 }

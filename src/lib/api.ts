@@ -5,22 +5,23 @@ export type QueryResult<T extends ZodTypeAny> = {
   queryFn: () => Promise<z.infer<T>>;
 };
 
-type GetParams<T extends ZodTypeAny> = {
+type RequestParams<T extends ZodTypeAny> = {
+  method: "GET" | "POST";
   route: string;
   queryParams?: QueryParams;
-  schema: T;
+  responseSchema: T;
 };
 
-export async function get<T extends ZodTypeAny>(
-  params: GetParams<T>,
+export async function request<T extends ZodTypeAny>(
+  params: RequestParams<T>,
 ): Promise<z.infer<T>> {
   const url = apiUrl(params.route, params.queryParams);
 
-  const jsonObject = await fetch(url, { method: "GET" }).then(
+  const jsonObject = await fetch(url, { method: params.method }).then(
     (response) => response.json() as unknown,
   );
 
-  const result = params.schema.parse(jsonObject) as T;
+  const result = params.responseSchema.parse(jsonObject) as T;
 
   return result;
 }

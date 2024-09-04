@@ -1,5 +1,5 @@
-import { z, ZodArray } from "zod";
-import { get, QueryResult } from "~/lib/api";
+import { z, type ZodArray } from "zod";
+import { request, type QueryResult } from "~/lib/api";
 import { Opening } from "~/lib/api/models";
 
 export function getOpenings(
@@ -9,10 +9,11 @@ export function getOpenings(
   return {
     queryKey: ["openings", limit, offset],
     queryFn: () =>
-      get({
+      request({
+        method: "GET",
         route: "/openings",
         queryParams: { limit, offset },
-        schema: z.array(Opening),
+        responseSchema: z.array(Opening),
       }),
   };
 }
