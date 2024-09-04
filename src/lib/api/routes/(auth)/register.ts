@@ -1,7 +1,7 @@
 import { request, type QueryResult } from "~/lib/api";
 import { AccessToken } from "~/lib/api/models";
 
-export default function postAuthorize(
+export default function postRegister(
   username: string,
   password: string,
 ): QueryResult<typeof AccessToken> {
