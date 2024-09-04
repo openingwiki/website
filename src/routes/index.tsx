@@ -2,7 +2,7 @@ import { createQuery } from "@tanstack/solid-query";
 import { For, type JSXElement } from "solid-js";
 import Heading from "~/components/heading";
 import OpeningCard from "~/components/opening-card";
-import { QueryBoundary } from "~/components/query-boundary";
+import QueryBoundary from "~/components/query-boundary";
 import { getOpenings } from "~/lib/api/routes/(openings)/openings/(openings)";
 import { useT } from "~/lib/i18n";
 import { BrandedTitle } from "~/lib/meta";
@@ -18,16 +18,7 @@ export default function Home(): JSXElement {
 
       <QueryBoundary
         query={openingsQuery}
-        errorFallback={() => (
-          <main>
-            {
-              // TODO: add something
-              t("error.message")
-            }
-          </main>
-        )}
-      >
-        {(openings) => (
+        show={(openings) => (
           <main class="flex flex-col gap-20 p-6">
             <For each={[undefined, undefined]}>
               {() => (
@@ -55,7 +46,15 @@ export default function Home(): JSXElement {
             </For>
           </main>
         )}
-      </QueryBoundary>
+        pending={
+          // TODO: add something
+          t("util.pending")
+        }
+        fallback={() =>
+          // TODO: add something
+          t("util.error")
+        }
+      />
     </>
   );
 }

@@ -1,7 +1,9 @@
 {
   "app-name": "Opening Wiki",
   "util": {
-    "title": "{{page}} - $t(app-name)"
+    "title": "{{page}} - $t(app-name)",
+    "pending": "Pending...",
+    "error": "Error!"
   },
   "header": {
     "sign-in": "Sign in"

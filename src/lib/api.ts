@@ -23,12 +23,30 @@ export async function request<T extends ZodTypeAny>(
     body: params.body !== undefined ? JSON.stringify(params.body) : undefined,
   };
 
-  const jsonObject = await fetch(url, requestInit).then(
-    (response) => response.json() as unknown,
-  );
+  let response;
+  try {
+    response = await fetch(url, requestInit);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  } catch (_e) {
+    throw new Error("fetch failed\n" + JSON.stringify(params));
+  }
+
+  if (!response.ok) {
+    throw new Error(
+      `got status ${response.status.toString()}\n` +
+        `request: ${JSON.stringify(params)}`,
+    );
+  }
+
+  let jsonObject;
+  try {
+    jsonObject = (await response.json()) as unknown;
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  } catch (_e) {
+    return new Error("couldn't convert to json\n" + JSON.stringify(response));
+  }
 
   const result = params.responseSchema.parse(jsonObject) as T;
-
   return result;
 }
 
