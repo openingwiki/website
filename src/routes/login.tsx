@@ -1,3 +1,4 @@
+import { useSearchParams } from "@solidjs/router";
 import {
   createSignal,
   onMount,
@@ -30,7 +31,11 @@ function Input(props: InputProps): JSXElement {
 }
 
 export default function Login(): JSXElement {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [searchParams, setSearchParams] = useSearchParams();
+
   const t = useT();
+
   const [username, setUsername] = createSignal("");
   const [password, setPassword] = createSignal("");
 
@@ -48,10 +53,9 @@ export default function Login(): JSXElement {
         <form
           class="flex flex-col items-center gap-4 rounded-2xl bg-ctp-mantle p-6"
           ref={form}
-          onSubmit={(e) => {
-            // postAuthorize()
-            alert(`The password of '${username()}' is '${password()}'.`);
-            e.preventDefault();
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
+          onSubmit={(_e) => {
+            setSearchParams({ username: username(), password: password() });
           }}
         >
           <Input
