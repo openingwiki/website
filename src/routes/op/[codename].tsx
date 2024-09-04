@@ -2,14 +2,14 @@ import { Navigate, useParams, type RouteDefinition } from "@solidjs/router";
 import { createQuery, useQueryClient } from "@tanstack/solid-query";
 import { Show, type JSXElement } from "solid-js";
 import QueryBoundary from "~/components/query-boundary";
-import { getOpening } from "~/lib/api/routes/(openings)/openings/[codename]";
+import { getOpeningQuery } from "~/lib/api/routes/(openings)/openings/[codename]";
 import { useT } from "~/lib/i18n";
 import { BrandedTitle } from "~/lib/meta";
 
 export const route: RouteDefinition = {
   preload: async ({ params }) => {
     const queryClient = useQueryClient();
-    await queryClient.prefetchQuery(getOpening(params.codename));
+    await queryClient.prefetchQuery(getOpeningQuery(params.codename));
   },
 };
 
@@ -18,7 +18,7 @@ export default function Opening(): JSXElement {
   const t = useT();
 
   const openingQuery = createQuery(() => ({
-    ...getOpening(params.codename),
+    ...getOpeningQuery(params.codename),
   }));
 
   return (

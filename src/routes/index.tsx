@@ -3,14 +3,14 @@ import { For, type JSXElement } from "solid-js";
 import Heading from "~/components/heading";
 import OpeningCard from "~/components/opening-card";
 import QueryBoundary from "~/components/query-boundary";
-import { getOpenings } from "~/lib/api/routes/(openings)/openings/(openings)";
+import { getOpeningsQuery } from "~/lib/api/routes/(openings)/openings/(openings)";
 import { useT } from "~/lib/i18n";
 import { BrandedTitle } from "~/lib/meta";
 
 export default function Home(): JSXElement {
   const t = useT();
 
-  const openingsQuery = createQuery(() => getOpenings(20, 0));
+  const openingsQuery = createQuery(() => getOpeningsQuery(20, 0));
 
   return (
     <>
