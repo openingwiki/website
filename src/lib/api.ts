@@ -9,6 +9,7 @@ type RequestParams<T extends ZodTypeAny> = {
   method: "GET" | "POST";
   route: string;
   queryParams?: QueryParams;
+  body?: object;
   responseSchema: T;
 };
 
@@ -17,7 +18,12 @@ export async function request<T extends ZodTypeAny>(
 ): Promise<z.infer<T>> {
   const url = apiUrl(params.route, params.queryParams);
 
-  const jsonObject = await fetch(url, { method: params.method }).then(
+  const requestInit: RequestInit = {
+    method: params.method,
+    body: params.body !== undefined ? JSON.stringify(params.body) : undefined,
+  };
+
+  const jsonObject = await fetch(url, requestInit).then(
     (response) => response.json() as unknown,
   );
 
