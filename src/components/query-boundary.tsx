@@ -25,7 +25,7 @@ export interface QueryBoundaryProps<T = unknown> {
   /**
    * Triggered when the query results in an error.
    */
-  errorFallback?: (err: Error, retry: () => void) => JSXElement;
+  errorFallback?: (err: Error, retry: () => Promise<void>) => JSXElement;
 
   /**
    * Triggered when fetching is complete, and the returned data is not falsey.
@@ -43,7 +43,7 @@ export function QueryBoundary<T>(props: QueryBoundaryProps<T>): JSXElement {
       <ErrorBoundary
         fallback={(err: Error, reset) =>
           props.errorFallback ? (
-            // eslint-disable-next-line @typescript-eslint/no-misused-promises, solid/reactivity
+            // eslint-disable-next-line solid/reactivity
             props.errorFallback(err, async () => {
               await props.query.refetch();
               reset();
