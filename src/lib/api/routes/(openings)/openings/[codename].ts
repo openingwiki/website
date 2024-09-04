@@ -5,7 +5,7 @@ export function getOpening(codename: string): QueryResult<typeof Opening> {
   const codenameLower = codename.toLowerCase();
 
   return {
-    queryKey: ["openings", codenameLower],
+    queryKey: ["openings", "--codename", codenameLower],
     queryFn: () =>
       request({
         method: "GET",

@@ -3,7 +3,7 @@ import { User } from "~/lib/api/models";
 
 export function getProfile(username: string): QueryResult<typeof User> {
   return {
-    queryKey: ["profile", username],
+    queryKey: ["profile", "--username", username],
     queryFn: () =>
       request({
         method: "GET",

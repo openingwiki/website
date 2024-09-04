@@ -7,7 +7,7 @@ export function getOpenings(
   offset?: number,
 ): QueryResult<ZodArray<typeof Opening>> {
   return {
-    queryKey: ["openings", limit, offset],
+    queryKey: ["openings", "--limit", limit, "--offset", offset],
     queryFn: () =>
       request({
         method: "GET",

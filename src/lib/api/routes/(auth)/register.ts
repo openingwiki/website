@@ -6,7 +6,7 @@ export default function postAuthorize(
   password: string,
 ): QueryResult<typeof AccessToken> {
   return {
-    queryKey: ["register", username, password],
+    queryKey: ["register", "--username", username, "--password", password],
     queryFn: () =>
       request({
         method: "POST",
