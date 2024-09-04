@@ -1,4 +1,4 @@
-import { type QueryResult } from "~/lib/api";
+import { request, type QueryResult } from "~/lib/api";
 import { AccessToken } from "~/lib/api/models";
 
 export default function postAuthorize(
@@ -6,7 +6,16 @@ export default function postAuthorize(
   password: string,
 ): QueryResult<typeof AccessToken> {
   return {
-    queryKey: ["register", username, password],
-    queryFn: () => ({}),
+    queryKey: ["auth", username, password],
+    queryFn: () =>
+      request({
+        method: "POST",
+        route: "/auth",
+        body: {
+          username,
+          password,
+        },
+        responseSchema: AccessToken,
+      }),
   };
 }
