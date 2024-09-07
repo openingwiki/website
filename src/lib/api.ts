@@ -27,12 +27,12 @@ export async function post<T extends ZodTypeAny>(
   return (await request({
     method: "POST",
     ...params,
-    headers: new Headers({ "Content-Type": "application/json" }),
+    headers: { "content-type": "application/json" },
   })) as T;
 }
 
 interface FullRequestParams<T extends ZodTypeAny> extends PostRequestParams<T> {
-  headers?: Headers;
+  headers?: Record<string, string>;
   method: "GET" | "POST";
 }
 
