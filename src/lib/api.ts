@@ -5,26 +5,34 @@ export type QueryResult<T extends ZodTypeAny> = {
   queryFn: () => Promise<z.infer<T>>;
 };
 
-interface RequestParams<T extends ZodTypeAny> {
+interface GetRequestParams<T extends ZodTypeAny> {
   route: string;
   queryParams?: QueryParams;
-  body?: object;
   responseSchema: T;
 }
 
+interface PostRequestParams<T extends ZodTypeAny> extends GetRequestParams<T> {
+  body?: object;
+}
+
 export async function get<T extends ZodTypeAny>(
-  params: RequestParams<T>,
+  params: GetRequestParams<T>,
 ): Promise<z.infer<T>> {
   return (await request({ method: "GET", ...params })) as T;
 }
 
 export async function post<T extends ZodTypeAny>(
-  params: RequestParams<T>,
+  params: PostRequestParams<T>,
 ): Promise<z.infer<T>> {
-  return (await request({ method: "POST", ...params })) as T;
+  return (await request({
+    method: "POST",
+    ...params,
+    headers: new Headers({ "Content-Type": "application/json" }),
+  })) as T;
 }
 
-interface FullRequestParams<T extends ZodTypeAny> extends RequestParams<T> {
+interface FullRequestParams<T extends ZodTypeAny> extends PostRequestParams<T> {
+  headers?: Headers;
   method: "GET" | "POST";
 }
 
@@ -35,6 +43,7 @@ async function request<T extends ZodTypeAny>(
 
   const requestInit: RequestInit = {
     method: params.method,
+    headers: new Headers(params.headers),
     body: params.body !== undefined ? JSON.stringify(params.body) : undefined,
   };
 
