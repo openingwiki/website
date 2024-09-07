@@ -1,6 +1,6 @@
 import { createSignal } from "solid-js";
 
-const [token, setToken] = createSignal<string | undefined>("");
+const [token, setToken] = createSignal<string | undefined>(undefined);
 export { token };
 
 export function updateToken(): void {
