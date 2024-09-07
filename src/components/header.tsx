@@ -1,7 +1,8 @@
 import { useNavigate } from "@solidjs/router";
-import { createSignal, type JSXElement } from "solid-js";
+import { createSignal, onMount, type JSXElement } from "solid-js";
 import Button from "~/components/button";
 import { useT } from "~/lib/i18n";
+import { token, updateToken } from "~/lib/session";
 import { switchColorscheme } from "~/lib/style";
 
 export default function Header(): JSXElement {
@@ -9,6 +10,10 @@ export default function Header(): JSXElement {
   const navigate = useNavigate();
 
   const [colorscheme, setColorscheme] = createSignal("Colorscheme: os");
+
+  onMount(() => {
+    updateToken();
+  });
 
   return (
     <header class="sticky top-0 z-40 flex h-16 flex-row items-center justify-between border-b border-ctp-surface0 bg-ctp-base/95 p-6 backdrop-blur">
@@ -20,6 +25,8 @@ export default function Header(): JSXElement {
       >
         {t("app-name")}
       </button>
+
+      <span>Token: {token()?.slice(0, 15)}…</span>
 
       <div class="flex flex-row gap-2">
         <Button

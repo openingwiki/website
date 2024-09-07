@@ -6,6 +6,7 @@ import Input from "~/components/input";
 import { postRegister } from "~/lib/api/routes/(auth)/register";
 import { useT } from "~/lib/i18n";
 import { BrandedTitle } from "~/lib/meta";
+import { updateToken } from "~/lib/session";
 
 type Credentials = {
   username: string;
@@ -48,7 +49,9 @@ export default function Login(): JSXElement {
                 credentials.username,
                 credentials.password,
               );
-              alert(`Success! Token: '${accessToken.token}'.`);
+              localStorage.setItem("token", accessToken.token);
+              updateToken();
+              navigate("/");
             } catch (_err) {
               alert(_err);
             }
