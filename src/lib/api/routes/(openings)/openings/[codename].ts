@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { request, type QueryResult } from "~/lib/api";
+import { get, type QueryResult } from "~/lib/api";
 import { Opening } from "~/lib/api/models";
 
 export async function getOpening(
@@ -7,8 +7,7 @@ export async function getOpening(
 ): Promise<z.infer<typeof Opening>> {
   const codenameLower = codename.toLowerCase();
 
-  return await request({
-    method: "GET",
+  return await get({
     route: `/openings/${codenameLower}`,
     responseSchema: Opening,
   });

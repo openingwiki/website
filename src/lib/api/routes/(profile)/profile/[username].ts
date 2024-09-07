@@ -1,12 +1,11 @@
 import { z } from "zod";
-import { request, type QueryResult } from "~/lib/api";
+import { get, type QueryResult } from "~/lib/api";
 import { User } from "~/lib/api/models";
 
 export async function getProfile(
   username: string,
 ): Promise<z.infer<typeof User>> {
-  return await request({
-    method: "GET",
+  return await get({
     route: `/profile/${username}`,
     responseSchema: User,
   });

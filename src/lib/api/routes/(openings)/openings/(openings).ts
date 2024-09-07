@@ -1,13 +1,12 @@
 import { z, type ZodArray } from "zod";
-import { request, type QueryResult } from "~/lib/api";
+import { get, type QueryResult } from "~/lib/api";
 import { Opening } from "~/lib/api/models";
 
 export async function getOpenings(
   limit?: number,
   offset?: number,
 ): Promise<z.infer<typeof Opening>[]> {
-  return await request({
-    method: "GET",
+  return await get({
     route: "/openings",
     queryParams: { limit, offset },
     responseSchema: z.array(Opening),

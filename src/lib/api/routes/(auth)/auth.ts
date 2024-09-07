@@ -1,13 +1,12 @@
 import { z } from "zod";
-import { request, type QueryResult } from "~/lib/api";
+import { post, type QueryResult } from "~/lib/api";
 import { AccessToken } from "~/lib/api/models";
 
 export async function postAuthorize(
   username: string,
   password: string,
 ): Promise<z.infer<typeof AccessToken>> {
-  return await request({
-    method: "POST",
+  return await post({
     route: "/auth",
     body: {
       username,

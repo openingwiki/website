@@ -5,16 +5,31 @@ export type QueryResult<T extends ZodTypeAny> = {
   queryFn: () => Promise<z.infer<T>>;
 };
 
-type RequestParams<T extends ZodTypeAny> = {
-  method: "GET" | "POST";
+interface RequestParams<T extends ZodTypeAny> {
   route: string;
   queryParams?: QueryParams;
   body?: object;
   responseSchema: T;
-};
+}
 
-export async function request<T extends ZodTypeAny>(
+export async function get<T extends ZodTypeAny>(
   params: RequestParams<T>,
+): Promise<z.infer<T>> {
+  return (await request({ method: "GET", ...params })) as T;
+}
+
+export async function post<T extends ZodTypeAny>(
+  params: RequestParams<T>,
+): Promise<z.infer<T>> {
+  return (await request({ method: "POST", ...params })) as T;
+}
+
+interface FullRequestParams<T extends ZodTypeAny> extends RequestParams<T> {
+  method: "GET" | "POST";
+}
+
+async function request<T extends ZodTypeAny>(
+  params: FullRequestParams<T>,
 ): Promise<z.infer<T>> {
   const url = apiUrl(params.route, params.queryParams);
 
