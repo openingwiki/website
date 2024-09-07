@@ -8,11 +8,29 @@
   "header": {
     "sign-in": "Sign in"
   },
-  "sign-in": {
+  "login": {
     "title": "Sign in",
-    "username": "Username",
-    "password": "Password",
-    "log-in": "Log in"
+    "form": {
+      "username": "Username",
+      "password": "Password",
+      "button": "Log in"
+    },
+    "create-account": {
+      "message": "Don’t have an account yet?",
+      "button": "Sign up"
+    }
+  },
+  "register": {
+    "title": "Sign up",
+    "form": {
+      "username": "$t(login.form.username)",
+      "password": "$t(login.form.password)",
+      "button": "Create account"
+    },
+    "have-account": {
+      "message": "Already have an account?",
+      "button": "Sign in"
+    }
   },
   "home": {
     "all-openings": "All Openings"

@@ -11,6 +11,7 @@ export default {
         sans: ["Wix Madefor Text Variable", ...defaultTheme.fontFamily.sans],
       },
       spacing: {
+        "72": "18rem",
         "240": "60rem",
       },
     },

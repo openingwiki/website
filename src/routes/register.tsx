@@ -3,7 +3,7 @@ import { onMount, type JSXElement } from "solid-js";
 import { createStore } from "solid-js/store";
 import Button from "~/components/button";
 import Input from "~/components/input";
-import { postAuthorize } from "~/lib/api/routes/(auth)/auth";
+import { postRegister } from "~/lib/api/routes/(auth)/register";
 import { useT } from "~/lib/i18n";
 import { BrandedTitle } from "~/lib/meta";
 
@@ -34,7 +34,7 @@ export default function Login(): JSXElement {
 
   return (
     <>
-      <BrandedTitle page={t("login.title")} />
+      <BrandedTitle page={t("register.title")} />
 
       <main class="flex grow flex-col items-center justify-center gap-4 self-center">
         <form
@@ -44,7 +44,7 @@ export default function Login(): JSXElement {
           onSubmit={async (ev) => {
             ev.preventDefault();
             try {
-              const accessToken = await postAuthorize(
+              const accessToken = await postRegister(
                 credentials.username,
                 credentials.password,
               );
@@ -56,27 +56,31 @@ export default function Login(): JSXElement {
         >
           <Input
             type="text"
-            placeholder={t("login.form.username")}
+            placeholder={t("register.form.username")}
             value={credentials.username}
             onInput={updateField("username")}
           />
           <Input
             type="password"
-            placeholder={t("login.form.password")}
+            placeholder={t("register.form.password")}
             value={credentials.password}
             onInput={updateField("password")}
           />
-          <Button class="w-full" type="submit" text={t("login.form.button")} />
+          <Button
+            class="w-full"
+            type="submit"
+            text={t("register.form.button")}
+          />
         </form>
 
         <div class="flex w-72 flex-col items-center gap-2 px-6">
-          <span>{t("login.create-account.message")}</span>
+          <span>{t("register.have-account.message")}</span>
           <Button
             class="w-full"
             onClick={() => {
-              navigate("/register");
+              navigate("/login");
             }}
-            text={t("login.create-account.button")}
+            text={t("register.have-account.button")}
           />
         </div>
       </main>
