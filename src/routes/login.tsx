@@ -1,12 +1,7 @@
-import { useSearchParams } from "@solidjs/router";
-import {
-  createSignal,
-  onMount,
-  type JSX,
-  type JSXElement,
-  type VoidProps,
-} from "solid-js";
+import { onMount, type JSX, type JSXElement, type VoidProps } from "solid-js";
+import { createStore } from "solid-js/store";
 import Button from "~/components/button";
+import { postRegister } from "~/lib/api/routes/(auth)/register";
 import { useT } from "~/lib/i18n";
 import { BrandedTitle } from "~/lib/meta";
 
@@ -30,16 +25,25 @@ function Input(props: InputProps): JSXElement {
   );
 }
 
-export default function Login(): JSXElement {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [searchParams, setSearchParams] = useSearchParams();
+type Credentials = {
+  username: string;
+  password: string;
+};
 
+export default function Login(): JSXElement {
   const t = useT();
 
-  const [username, setUsername] = createSignal("");
-  const [password, setPassword] = createSignal("");
+  const [credentials, setCredentials] = createStore<Credentials>({
+    username: "",
+    password: "",
+  });
 
   let form!: HTMLFormElement;
+
+  const updateField = (field: keyof Credentials) => (ev: InputEvent) => {
+    const inputElement = ev.currentTarget as HTMLTextAreaElement;
+    setCredentials({ [field]: inputElement.value });
+  };
 
   onMount(() => {
     form.reset();
@@ -53,29 +57,33 @@ export default function Login(): JSXElement {
         <form
           class="flex flex-col items-center gap-4 rounded-2xl bg-ctp-mantle p-6"
           ref={form}
-          // eslint-disable-next-line @typescript-eslint/no-unused-vars
-          onSubmit={(_e) => {
-            setSearchParams({ username: username(), password: password() });
+          // eslint-disable-next-line @typescript-eslint/no-misused-promises
+          onSubmit={async (ev) => {
+            ev.preventDefault();
+            try {
+              const accessToken = await postRegister(
+                credentials.username,
+                credentials.password,
+              );
+              alert(accessToken);
+              // eslint-disable-next-line @typescript-eslint/no-unused-vars
+            } catch (_err) {
+              alert("Jeeeezz");
+            }
           }}
         >
           <Input
             type="text"
             placeholder={t("sign-in.username")}
-            value={username()}
-            onInput={(e) => {
-              const target = e.target as HTMLTextAreaElement;
-              setUsername(target.value);
-            }}
+            value={credentials.username}
+            onInput={updateField("username")}
           />
 
           <Input
             type="password"
             placeholder={t("sign-in.password")}
-            value={password()}
-            onInput={(e) => {
-              const target = e.target as HTMLTextAreaElement;
-              setPassword(target.value);
-            }}
+            value={credentials.password}
+            onInput={updateField("password")}
           />
 
           <Button class="w-full" type="submit" text={t("sign-in.log-in")} />
