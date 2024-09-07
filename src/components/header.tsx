@@ -1,5 +1,5 @@
 import { useNavigate } from "@solidjs/router";
-import { createSignal, onMount, type JSXElement } from "solid-js";
+import { createSignal, onMount, Show, type JSXElement } from "solid-js";
 import Button from "~/components/button";
 import { useT } from "~/lib/i18n";
 import { token, updateToken } from "~/lib/session";
@@ -26,9 +26,7 @@ export default function Header(): JSXElement {
         {t("app-name")}
       </button>
 
-      <span>Token: {token()?.slice(0, 15)}…</span>
-
-      <div class="flex flex-row gap-2">
+      <div class="flex flex-row items-center gap-2">
         <Button
           text={colorscheme()}
           onClick={() => {
@@ -36,12 +34,18 @@ export default function Header(): JSXElement {
           }}
         />
 
-        <Button
-          text={t("header.sign-in")}
-          onClick={() => {
-            navigate("/login");
-          }}
-        />
+        <Show
+          when={token() === undefined}
+          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+          fallback={<span>Token: {token()!.slice(0, 15)}…</span>}
+        >
+          <Button
+            text={t("header.sign-in")}
+            onClick={() => {
+              navigate("/login");
+            }}
+          />
+        </Show>
       </div>
     </header>
   );
