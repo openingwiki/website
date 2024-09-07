@@ -1,7 +1,7 @@
 import { onMount, type JSX, type JSXElement, type VoidProps } from "solid-js";
 import { createStore } from "solid-js/store";
 import Button from "~/components/button";
-import { postRegister } from "~/lib/api/routes/(auth)/register";
+import { postAuthorize } from "~/lib/api/routes/(auth)/auth";
 import { useT } from "~/lib/i18n";
 import { BrandedTitle } from "~/lib/meta";
 
@@ -61,12 +61,11 @@ export default function Login(): JSXElement {
           onSubmit={async (ev) => {
             ev.preventDefault();
             try {
-              const accessToken = await postRegister(
+              const accessToken = await postAuthorize(
                 credentials.username,
                 credentials.password,
               );
               alert(`Success! Token: '${accessToken.token}'.`);
-               
             } catch (_err) {
               alert(_err);
             }
