@@ -8,6 +8,7 @@ export type QueryResult<T extends ZodTypeAny> = {
 interface GetRequestParams<T extends ZodTypeAny> {
   route: string;
   queryParams?: QueryParams;
+  headers?: Record<string, string>;
   responseSchema: T;
 }
 
@@ -27,12 +28,11 @@ export async function post<T extends ZodTypeAny>(
   return (await request({
     method: "POST",
     ...params,
-    headers: { "content-type": "application/json" },
+    headers: { ...params.headers, "content-type": "application/json" },
   })) as T;
 }
 
 interface FullRequestParams<T extends ZodTypeAny> extends PostRequestParams<T> {
-  headers?: Record<string, string>;
   method: "GET" | "POST";
 }
 
