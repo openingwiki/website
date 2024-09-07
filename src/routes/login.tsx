@@ -65,10 +65,10 @@ export default function Login(): JSXElement {
                 credentials.username,
                 credentials.password,
               );
-              alert(accessToken);
-              // eslint-disable-next-line @typescript-eslint/no-unused-vars
+              alert(`Success! Token: '${accessToken.token}'.`);
+               
             } catch (_err) {
-              alert("Jeeeezz");
+              alert(_err);
             }
           }}
         >
