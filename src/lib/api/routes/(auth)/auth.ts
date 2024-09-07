@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { post, type QueryResult } from "~/lib/api";
+import { post } from "~/lib/api";
 import { AccessToken } from "~/lib/api/models";
 
 export async function postAuthorize(
@@ -14,14 +14,4 @@ export async function postAuthorize(
     },
     responseSchema: AccessToken,
   });
-}
-
-export function postAuthorizeQuery(
-  username: string,
-  password: string,
-): QueryResult<typeof AccessToken> {
-  return {
-    queryKey: ["auth", "--username", username, "--password", password],
-    queryFn: async () => await postAuthorize(username, password),
-  };
 }

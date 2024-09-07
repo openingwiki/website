@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { post, type QueryResult } from "~/lib/api";
+import { post } from "~/lib/api";
 import { AccessToken } from "~/lib/api/models";
 
 export async function postRegister(
@@ -14,14 +14,4 @@ export async function postRegister(
     },
     responseSchema: AccessToken,
   });
-}
-
-export function postRegisterQuery(
-  username: string,
-  password: string,
-): QueryResult<typeof AccessToken> {
-  return {
-    queryKey: ["register", "--username", username, "--password", password],
-    queryFn: async () => await postRegister(username, password),
-  };
 }
