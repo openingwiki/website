@@ -1,0 +1,38 @@
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Dependencies
+node_modules/
+pnpm-lock.yaml
+yarn.lock
+package-lock.json
+
+# Production build
+dist/
+*.local
+
+# Editor settings
+.vscode/
+.idea/
+*.code-workspace
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Cache & temp files
+.DS_Store
+Thumbs.db
+.npm/
+.nuxtrc
+.nitro/
+
+# Testing & coverage
+coverage/
+jest.config.js
+tests/
+.vite/
