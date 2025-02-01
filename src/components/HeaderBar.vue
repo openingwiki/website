@@ -3,17 +3,17 @@
 
 <template>
   <header>
-    <div class="site-name">Opening.wiki</div>
+    <div class="site-name" @click="this.$router.push('/')">Opening.wiki</div>
     <nav class="navigation">
       <ul>
         <li><router-link to="/">Openings</router-link></li>
-        <li><router-link>Endings</router-link></li>
-        <li><router-link>Osts</router-link></li>
+        <li><router-link to="/">Endings</router-link></li>
+        <li><router-link to="/">Osts</router-link></li>
       </ul>
     </nav>
     <div class="auth-buttons">
-      <NiceButton>Login</NiceButton>
-      <NiceButton>Sign Up</NiceButton>
+      <NiceButton :class="nice-button" @click="this.$router.push('/login')">Login</NiceButton>
+      <NiceButton :class="nice-button" @click="this.$router.push('/register')">Sign Up</NiceButton>
     </div>
   </header>
 </template>
@@ -31,6 +31,8 @@ export default {
 
 <style scoped>
 header {
+  padding-left: 10px;
+  padding-right: 10px;
   background-color: #232341;
   display: flex;
   justify-content: space-between;  /* Ensures space between elements */
@@ -47,6 +49,7 @@ a {
   font-size: 24px;
   font-weight: bold;
   transition: transform 0.2s ease, color 0.2s ease;  /* Smooth transition for click effect */
+  width: 220px;
 }
 
 .site-name:hover {
@@ -103,19 +106,18 @@ a {
 .auth-buttons {
   display: flex;
   gap: 10px;  /* Space between the auth buttons */
+  width: 220px;
 }
 
-button {
-  padding: 8px 16px;
-  font-size: 14px;
-  cursor: pointer;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
+/* Hover effect */
 button:hover {
-  background-color: #f0f0f0;
+  background-color: #1565C0;
+  transform: translateY(-1px);  /* Slightly lift the button */
 }
 
-
+/* Active effect */
+button:active {
+  transform: translateY(0);  /* Return to normal position on click */
+  background-color: #0051aa;
+}
 </style>
