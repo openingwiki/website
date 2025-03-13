@@ -1,8 +1,13 @@
 <script setup lang="ts">
 import {useUserStore} from "@/stores/user";
+import router from "@/router";
 import BlueButton from "@/components/BlueButton.vue";
 
 const userStore = useUserStore();
+
+const redirectToAuth = (mode: 'login' | 'register') => {
+  router.push({ path: `/${mode}` });
+};
 </script>
 
 <template>
@@ -19,8 +24,8 @@ const userStore = useUserStore();
       ID: FAILED
     </div>
     <div v-else class="auth-buttons">
-      <blue-button class="auth-button">Log in</blue-button>
-      <blue-button class="auth-button">Sign in</blue-button>
+      <blue-button class="auth-button" @click="redirectToAuth('login')">Log in</blue-button>
+      <blue-button class="auth-button" @click="redirectToAuth('register')">Sign in</blue-button>
     </div>
   </header>
 </template>
