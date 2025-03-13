@@ -1,4 +1,8 @@
 <script setup lang="ts">
+import {useUserStore} from "@/stores/user";
+import BlueButton from "@/components/BlueButton.vue";
+
+const userStore = useUserStore();
 </script>
 
 <template>
@@ -11,8 +15,12 @@
         <li><router-link to="/" class="link">Main</router-link></li>
       </ul>
     </nav>
-    <div class="profile">
+    <div v-if="userStore.isLoggedIn" class="profile">
       ID: FAILED
+    </div>
+    <div v-else class="auth-buttons">
+      <blue-button class="auth-button">Log in</blue-button>
+      <blue-button class="auth-button">Sign in</blue-button>
     </div>
   </header>
 </template>
@@ -36,6 +44,19 @@ header {
   width: 300px;
   display: flex;
   justify-content: right;
+}
+
+.auth-button {
+  width: 100px;
+  font-size: 16px;
+  height: 30px;
+}
+
+.auth-buttons {
+  width: 300px;
+  display: flex;
+  justify-content: right;
+  gap: 10px;
 }
 
 nav {
