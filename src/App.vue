@@ -1,20 +1,10 @@
 <template>
-  <div id="app">
-    <HeaderBar></HeaderBar>
-    <router-view></router-view>
-  </div>
+  <nav>
+    <router-link to="/">Home</router-link> |
+    <router-link to="/about">About</router-link>
+  </nav>
+  <router-view/>
 </template>
-
-<script>
-import HeaderBar from './components/HeaderBar.vue'
-
-export default {
-  components: {
-    HeaderBar
-  },
-  name: 'App',
-}
-</script>
 
 <style>
 #app {
@@ -22,15 +12,19 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
+  color: #2c3e50;
 }
 
-body {
-  margin: 0;
-  padding: 0;
-  background-color: #1E1E2E;
-  font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  font-feature-settings: normal;
-  font-variation-settings: normal;
-  color: white;
+nav {
+  padding: 30px;
+}
+
+nav a {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+nav a.router-link-exact-active {
+  color: #42b983;
 }
 </style>
