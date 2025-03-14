@@ -1,11 +1,16 @@
 <script setup lang="ts">
 import BlueButton from "@/components/BlueButton.vue";
+import {useUserStore} from "@/stores/user";
+import { ref } from "vue";
 
-const username = '';
-const password = '';
+
+const userStore = useUserStore();
+
+const username = ref("");
+const password = ref("");
 
 function handleLogin() {
-  console.log("Logging in with:", username, password);
+  userStore.login(username.value, password.value);
 }
 </script>
 
@@ -14,20 +19,26 @@ function handleLogin() {
     <h2 style="font-weight: normal;">Log in</h2>
     <form @submit.prevent="handleLogin">
       <div class="input-group">
-        <label for="username">Username</label>
+        <label for="username">Username:</label>
         <input id="username" v-model="username" type="text" required />
+        <div class="error-message" v-if="userStore.isFailedAttempt">
+          Wrong username or password
+        </div>
       </div>
 
       <div class="input-group">
-        <label for="password">Password</label>
+        <label for="password">Password:</label>
         <input id="password" v-model="password" type="password" required />
+        <div class="error-message" v-if="userStore.isFailedAttempt">
+          Wrong username or password
+        </div>
       </div>
 
       <blue-button class="submit-button" type="submit">Log in</blue-button>
     </form>
     <div class="useful-links">
       <span>Forgot password? Unluck</span>
-      <span>Don't have account? <router-link class="link" to="/auth/register">Register</router-link></span>
+      <span>Don't have account? <router-link class="link" to="/register">Register</router-link></span>
     </div>
   </div>
 </template>
@@ -58,6 +69,8 @@ input {
   width: 100%;
   border: 0;
   padding: 0;
+  box-sizing: border-box;
+  margin: 0;
   height: 30px;
   padding-left: 5px;
 }
@@ -79,6 +92,11 @@ form {
   width: 90%;
   height: 30px;
   font-size: 16px;
+}
+
+.error-message {
+  color: red;
+  font-size: 14px;
 }
 
 .useful-links {

@@ -21,7 +21,7 @@ const redirectToAuth = (mode: 'login' | 'register') => {
       </ul>
     </nav>
     <div v-if="userStore.isLoggedIn" class="profile">
-      ID: FAILED
+      {{ userStore.username }}
     </div>
     <div v-else class="auth-buttons">
       <blue-button class="auth-button" @click="redirectToAuth('login')">Log in</blue-button>

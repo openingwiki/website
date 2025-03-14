@@ -1,10 +1,14 @@
 import { defineStore } from "pinia";
-import { getUserProfile } from "@/api/userService";
+import { getUserProfile, loginUser, registerUser } from "@/api/userService";
+import router from "@/router";
 
 export const useUserStore = defineStore("user", {
     state: () => ({
         id: BigInt(-1),
-        isLoggedIn: false
+        username: "",
+        isLoggedIn: false,
+        isFailedAttempt: false,
+        isFailedRegistrationAttempt: false
     }),
 
     actions: {
@@ -15,6 +19,34 @@ export const useUserStore = defineStore("user", {
                 this.isLoggedIn = true;
             } catch (err) {
                 console.log("User is not authorized, attempt failed.");
+            }
+        },
+        async register(username: string, password: string) {
+            try {
+                const response = await registerUser(username, password);
+
+                this.id = response.id;
+                this.username = response.username;
+                this.isLoggedIn = true;
+                this.isFailedAttempt = false;
+
+                router.push("/");
+            } catch (error) {
+                this.isFailedRegistrationAttempt = true;
+            }
+        },
+        async login(username: string, password: string) {
+            try {
+                const response = await loginUser(username, password);
+
+                this.id = response.id;
+                this.username = response.username;
+                this.isLoggedIn = true;
+                this.isFailedAttempt = false;
+
+                router.push("/");
+            } catch (error) {
+                this.isFailedAttempt = true;
             }
         }
     },
