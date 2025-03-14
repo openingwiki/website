@@ -21,6 +21,15 @@ export const useUserStore = defineStore("user", {
                 console.log("User is not authorized, attempt failed.");
             }
         },
+        async logout() {
+          this.id = BigInt(-1);
+          this.username = "";
+          this.isLoggedIn = false;
+          this.isFailedAttempt = false;
+          this.isFailedRegistrationAttempt = false;
+
+          router.push("/")
+        },
         async register(username: string, password: string) {
             try {
                 const response = await registerUser(username, password);
