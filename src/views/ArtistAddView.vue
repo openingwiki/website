@@ -2,38 +2,29 @@
 import BlueButton from "@/components/BlueButton.vue";
 import DropBox from "@/components/DropBox.vue";
 import {ref, useTemplateRef} from "vue";
-import {addAnime} from "@/api/animeService";
-import DropDownMenu from "@/components/DropDownMenu.vue";
 import NotificationBar from "@/components/NotificationBar.vue";
+import {addArtist} from "@/api/singerService";
 
 
-const animeName = ref("");
+const artistName = ref("");
 
-type dropBox = InstanceType<typeof DropBox>
-const dropBoxRef = useTemplateRef<dropBox>("dropbox_anime_preview");
 type notificationBar = InstanceType<typeof Notification>
 const notifier = useTemplateRef<notificationBar>("notifier");
 
-const handelAnimeAdd = () => {
-  console.log(dropBoxRef.value?.image)
-  if (dropBoxRef.value.image.file == null) {
-    console.log("error");
-  } else {
-    addAnime(animeName.value, dropBoxRef.value?.image.file);
-    notifier.value?.addNotification("Anime was successfully added!");
-  }
+const handleArtistAdd = () => {
+  addArtist(artistName.value);
+  notifier.value?.addNotification("Artist was successfully added!");
 }
 </script>
 
 <template>
   <div class="form-container">
-    <h2 style="font-weight: normal;">Add anime</h2>
-    <form @submit.prevent="handelAnimeAdd">
+    <h2 style="font-weight: normal;">Add artist</h2>
+    <form @submit.prevent="handleArtistAdd">
       <div class="input-group">
-        <label for="username">Anime name:</label>
-        <input v-model="animeName" type="text" required placeholder="Anime name..."/>
+        <label for="username">Artist name:</label>
+        <input v-model="artistName" type="text" required placeholder="Artist name..."/>
       </div>
-      <drop-box :label="'Anime preview:'" ref="dropbox_anime_preview"></drop-box>
       <blue-button class="submit-button" type="submit">Add</blue-button>
     </form>
   </div>

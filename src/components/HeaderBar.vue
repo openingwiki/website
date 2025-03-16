@@ -45,15 +45,15 @@ const goToAnimeAddPage = () => {
   openingAddMenuComponent.value?.toggleMenu();
 }
 
-const goToSingerAddPage = () => {
-  router.push("/add/singer");
+const goToArtistAddPage = () => {
+  router.push("/add/artist");
   openingAddMenuComponent.value?.toggleMenu();
 }
 
 const openingAddMenuItems = [
   {label: "Add opening", action: goToOpeningAddPage},
   {label: "Add anime", action: goToAnimeAddPage},
-  {label: "Add singer", action: goToSingerAddPage}
+  {label: "Add artist", action: goToArtistAddPage}
 ];
 </script>
 

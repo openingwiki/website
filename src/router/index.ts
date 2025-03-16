@@ -4,7 +4,7 @@ import LoginView from "@/views/LoginView.vue";
 import RegisterView from "@/views/RegisterView.vue";
 import OpeningAddView from "@/views/OpeningAddView.vue";
 import AnimeAddView from "@/views/AnimeAddView.vue";
-import SingerAddView from "@/views/SingerAddView.vue";
+import ArtistAddView from "@/views/ArtistAddView.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -33,9 +33,9 @@ const routes: Array<RouteRecordRaw> = [
     component: AnimeAddView
   },
   {
-    path: '/add/singer',
-    name: 'add_singer',
-    component: SingerAddView
+    path: '/add/artist',
+    name: 'add_artist',
+    component: ArtistAddView
   }
 ]
 
