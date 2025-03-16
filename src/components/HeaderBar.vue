@@ -11,6 +11,7 @@ import DropDownMenu from "@/components/DropDownMenu.vue";
 import PlusSvg from "@/components/PlusSvg.vue";
 
 import defaultPfp from "@/assets/GojoSatoro.jpg";
+import OpeningAddView from "@/views/OpeningAddView.vue";
 
 const {cookies} = useCookies();
 const userStore = useUserStore();
@@ -35,8 +36,25 @@ const profileMenuItems = [
 ]
 
 // Opening add dropdown configuration.
+const goToOpeningAddPage = () => {
+  router.push("/add/opening");
+  openingAddMenuComponent.value?.toggleMenu();
+}
+
+const goToAnimeAddPage = () => {
+  router.push("/add/anime");
+  openingAddMenuComponent.value?.toggleMenu();
+}
+
+const goToSingerAddPage = () => {
+  router.push("/add/singer");
+  openingAddMenuComponent.value?.toggleMenu();
+}
+
 const openingAddMenuItems = [
-  {label: "Logout", action: logout}
+  {label: "Add opening", action: goToOpeningAddPage},
+  {label: "Add anime", action: goToAnimeAddPage},
+  {label: "Add singer", action: goToSingerAddPage}
 ];
 </script>
 

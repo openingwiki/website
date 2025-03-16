@@ -36,7 +36,8 @@ defineExpose({
 }
 
 .dropdown-menu {
-  top: 100%;
+  top: 110%;
+  right: 0;
   position: absolute;
   background-color: #2F2D46;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -62,6 +63,8 @@ defineExpose({
 }
 
 .dropdown-btn {
+  width: 40px;
+  height: 40px;
   background: none;
   border: none;
   cursor: pointer;
