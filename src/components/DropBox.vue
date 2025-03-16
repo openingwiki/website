@@ -1,11 +1,15 @@
-<script setup>
-import { ref } from 'vue';
+<script setup lang="ts">
+import {defineProps, ref} from 'vue';
 import BlueButton from "@/components/BlueButton.vue";
 import RedButton from "@/components/RedButton.vue";
 
+const props = defineProps<{
+  label: string,
+}>();
+
 // Reactive properties for drag state and image preview
 const isDragOver = ref(false);
-const image = ref(null);
+const image = ref<File | null>(null);
 
 // Ref for the file input element
 const fileInput = ref(null);
@@ -43,22 +47,28 @@ const handleFile = (file) => {
   if (file && file.type === 'image/png') {
     const reader = new FileReader();
     reader.onload = (e) => {
-      image.value = e.target.result; // Set image data URL
+      image.value = { file, preview: e.target?.result as string }; // Store both file and preview
     };
-    reader.readAsDataURL(file); // Read the file as a base64 string
+    reader.readAsDataURL(file);
   } else {
     alert('Please select a PNG image.');
   }
 };
 
 const clearFile = () => {
-  image.value = null;
-  fileInput.value = null;
+  image.value = { file: null, preview: null };
+  fileInput.value.value = null; // Reset input value
 }
+
+// eslint-disable-next-line no-undef
+defineExpose({
+  image
+});
 </script>
 
 <template>
   <div class="container">
+    <label> {{label}} </label>
     <div
         class="dropbox"
         @dragover.prevent="onDragOver"
@@ -87,9 +97,11 @@ const clearFile = () => {
 
 <style scoped>
 .container {
+  width: 100%;
   gap: 5px;
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
 }
 
 .action-buttons {
@@ -112,7 +124,8 @@ const clearFile = () => {
 .dropbox {
   border: 2px dashed #007BFF;
   padding: 20px;
-  width: 300px;
+  width: 100%;
+  box-sizing: border-box;
   height: 200px;
   display: flex;
   justify-content: center;

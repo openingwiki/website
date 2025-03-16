@@ -11,7 +11,6 @@ import DropDownMenu from "@/components/DropDownMenu.vue";
 import PlusSvg from "@/components/PlusSvg.vue";
 
 import defaultPfp from "@/assets/GojoSatoro.jpg";
-import OpeningAddView from "@/views/OpeningAddView.vue";
 
 const {cookies} = useCookies();
 const userStore = useUserStore();

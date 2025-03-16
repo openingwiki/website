@@ -1,30 +1,51 @@
 <script setup lang="ts">
 import BlueButton from "@/components/BlueButton.vue";
-import { ref } from "vue";
+import DropBox from "@/components/DropBox.vue";
+import {ref, useTemplateRef} from "vue";
+import {addAnime} from "@/api/animeService";
+import DropDownMenu from "@/components/DropDownMenu.vue";
+import NotificationBar from "@/components/NotificationBar.vue";
 
 
 const animeName = ref("");
 
+type dropBox = InstanceType<typeof DropBox>
+const dropBoxRef = useTemplateRef<dropBox>("dropbox_anime_preview");
+type notificationBar = InstanceType<typeof Notification>
+const notifier = useTemplateRef<notificationBar>("notifier");
+
 const handelAnimeAdd = () => {
-  console.log("");
+  console.log(dropBoxRef.value?.image)
+  if (dropBoxRef.value.image.file == null) {
+    console.log("error");
+  } else {
+    addAnime(animeName.value, dropBoxRef.value?.image.file);
+    notifier.value.addNotification("Anime was successfully added!");
+  }
 }
 </script>
 
 <template>
-  <div class="container">
+  <div class="form-container">
     <h2 style="font-weight: normal;">Add anime</h2>
     <form @submit.prevent="handelAnimeAdd">
       <div class="input-group">
         <label for="username">Anime name:</label>
-        <input id="username" v-model="animeName" type="text" required />
+        <input v-model="animeName" type="text" required placeholder="Anime name..."/>
       </div>
+      <drop-box :label="'Anime preview:'" ref="dropbox_anime_preview"></drop-box>
       <blue-button class="submit-button" type="submit">Add</blue-button>
     </form>
   </div>
+  <NotificationBar ref="notifier" />
 </template>
 
 <style scoped>
-.container {
+h2 {
+  margin: 0;
+}
+
+.form-container {
   background-color: #2F2D46;
   width: 600px;
   color: white;
@@ -32,10 +53,11 @@ const handelAnimeAdd = () => {
   display: flex;
   flex-direction: column;
   gap: 20px;
+  padding: 10px;
 }
 
 .input-group {
-  width: 90%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -67,7 +89,7 @@ form {
 }
 
 .submit-button {
-  width: 90%;
+  width: 100%;
   height: 30px;
   font-size: 16px;
 }

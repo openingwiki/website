@@ -51,6 +51,7 @@ function handleLogin() {
   display: flex;
   flex-direction: column;
   gap: 20px;
+  padding-bottom: 10px;
 }
 
 h2 {
