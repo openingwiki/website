@@ -1,42 +1,24 @@
 <script setup lang="ts">
+import {getAnimeByName} from "@/api/animeService";
+import {ref} from "vue";
+import CustomSelect from "@/components/CustomSelect.vue";
+import {AnimePreview} from "@/types/anime";
 
-const books = [
-  { title: "Old Man's War" },
-  { title: "The Lock Artist" },
-  { title: "HTML5" },
-  { title: "Right Ho Jeeves" },
-  { title: "The Code of the Wooster" },
-  { title: "Thank You Jeeves" }
-]
+const animeNames = ref<AnimePreview[]>([]);
+
+const searchAnime = async (inputText: string) => {
+  const result = await getAnimeByName(inputText);
+
+  animeNames.value = [];
+  result.forEach(item => {
+    animeNames.value.push(item);
+  });
+}
 </script>
 
 <template>
-  <v-select :options="books" label="title" class="selecting" placeholder="Select anime"></v-select>
+  <custom-select :opts="animeNames" :change-func="searchAnime" placeholder="Select anime"></custom-select>
 </template>
 
-<style>
-@import "vue-select/dist/vue-select.css";
-
-.selecting .vs__search::placeholder,
-.selecting .vs__dropdown-toggle,
-.selecting .vs__dropdown-menu {
-  background: #2F2D46;
-  border: none;
-  color: white;
-  text-transform: lowercase;
-  font-variant: small-caps;
-}
-
-.selecting .vs__clear,
-.selecting .vs__open-indicator {
-  fill: white;
-}
-
-.selecting .vs__selected {
-  color: white;
-}
-
-.selecting {
-  min-width: 500px;
-}
+<style scoped>
 </style>
