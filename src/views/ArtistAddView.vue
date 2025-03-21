@@ -3,7 +3,7 @@ import BlueButton from "@/components/BlueButton.vue";
 import DropBox from "@/components/DropBox.vue";
 import {ref, useTemplateRef} from "vue";
 import NotificationBar from "@/components/NotificationBar.vue";
-import {addArtist} from "@/api/singerService";
+import {addArtist} from "@/api/artistService";
 
 
 const artistName = ref("");

@@ -4,19 +4,21 @@ import {AnimePreview} from "@/types/anime";
 
 export const addAnime = async (animeName: string, file: File): Promise<bigint> => {
     const formData = new FormData();
-    formData.append("name", animeName);
     formData.append("preview", file);
 
-    const response = await apiClient.post("/anime", formData, {
+    const response_post_request = await apiClient.post<AnimePreview>("/anime/", {
+        name: animeName,
+    });
+    const response_image_post_request = await apiClient.post(`/anime/${response_post_request.data.id}/preview-image`, formData, {
         headers: {
             "Content-Type": "multipart/form-data",
         },
     });
-    return BigInt(response.status);
+    return BigInt(response_image_post_request.status);
 }
 
 export const getAnimeByName = async (animeName: string): Promise<AnimePreview[]> => {
-    const response = await apiClient.get("/anime", {
+    const response = await apiClient.get("/anime/", {
         params: {
             query: animeName
         }
