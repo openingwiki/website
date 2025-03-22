@@ -94,7 +94,7 @@ const handelOpeningAdd = () => {
         <label>Youtube link:</label>
         <input v-model="youtubeLink" type="text" required placeholder="Youtube link..."/>
       </div>
-      <drop-box :label="'Opening preview:'" ref="dropboxPreview"></drop-box>
+<!--      <drop-box :label="'Opening preview:'" ref="dropboxPreview"></drop-box>-->
       <blue-button class="submit-button" type="submit">Add</blue-button>
     </form>
   </div>

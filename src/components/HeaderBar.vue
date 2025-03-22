@@ -60,7 +60,9 @@ const openingAddMenuItems = [
 <template>
   <header>
     <div class="logo">
-      <span class="site-name">Opening.wiki</span>
+      <router-link to="/">
+        <span class="site-name">Opening.wiki <span style="font-size: 12px">v0.0.0 alpha</span></span>
+      </router-link>
     </div>
 
     <nav>
@@ -164,6 +166,10 @@ nav ul li {
   justify-content: center;
   align-items: center;
   width: 80px;
+}
+
+router-link{
+  text-decoration: none;
 }
 
 .site-name {
