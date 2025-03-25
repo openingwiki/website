@@ -17,7 +17,11 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18
-
+      
+      - name: Create .env file from GitHub Secrets
+        run: |
+          echo "VUE_APP_API_BASE_URL=${{ secrets.VUE_APP_API_BASE_URL }}" >> .env
+  
       - name: Install Dependencies
         run: npm install
 
