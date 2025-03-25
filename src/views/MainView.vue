@@ -19,9 +19,16 @@ onMounted(async () => {
 
 <template>
   <div class="main">
-    <opening-card v-for="opening in openings" :key="opening.id" :thumbnail-link="opening.thumbnailLink"></opening-card>
+    <h2 style="color: white; font-weight: normal">Openings collection</h2>
+    <opening-card v-for="opening in openings" :key="opening.id" :thumbnail-link="opening.thumbnailLink" :name="opening.name"></opening-card>
   </div>
 </template>
 
 <style scoped>
+.main {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
 </style>
