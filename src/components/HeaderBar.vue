@@ -61,7 +61,7 @@ const openingAddMenuItems = [
   <header>
     <div class="logo">
       <router-link to="/">
-        <span class="site-name">Opening.wiki <span style="font-size: 12px">v0.0.0 alpha</span></span>
+        <span class="site-name">Opening.wiki <span style="font-size: 12px">v0.0.1 alpha</span></span>
       </router-link>
     </div>
 

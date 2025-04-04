@@ -4,8 +4,12 @@ import { defineProps } from 'vue';
 const props = defineProps<{
   id: number,
   name: string,
-  thumbnailLink: string
+  thumbnailLink: string,
+  animeName: string,
+  artistNames: string[]
 }>();
+
+const formattedArtistNames = props.artistNames.map(name => `"${name}"`).join(", ");
 </script>
 
 <template>
@@ -13,6 +17,8 @@ const props = defineProps<{
     <img class="preview" :src="thumbnailLink">
     <div class="info">
       <span class="name">{{name}}</span>
+      <span class="artist-names">by {{formattedArtistNames}}</span>
+      <span class="anime-name">in {{animeName}} № opening</span>
     </div>
   </div>
 </template>
@@ -37,8 +43,12 @@ const props = defineProps<{
 }
 
 .info {
+  display: flex;
+  flex-direction: column;
   padding-top: 10px;
   padding-bottom: 10px;
+  align-items: flex-start;
+  gap: 10px;
 }
 
 .name {

@@ -20,7 +20,12 @@ onMounted(async () => {
 <template>
   <div class="main">
     <h2 style="color: white; font-weight: normal">Openings collection</h2>
-    <opening-card v-for="opening in openings" :key="opening.id" :thumbnail-link="opening.thumbnailLink" :name="opening.name"></opening-card>
+    <opening-card v-for="opening in openings" :key="opening.id"
+                  :thumbnail-link="opening.thumbnailLink"
+                  :name="opening.name"
+                  :anime-name="opening.animeName"
+                  :artist-names="opening.artistNames"
+    />
   </div>
 </template>
 

@@ -13,13 +13,14 @@ import {addOpening} from "@/api/openingService";
 
 type customSelect = InstanceType<typeof CustomSelect>;
 
+/* eslint-disable @typescript-eslint/no-empty-function */
+const doNothing = (_arg: any) => {};
+
+
 // Opening name config.
 const openingName = ref("");
 
 // Anime selector config.
-const animeSelector = useTemplateRef<customSelect>("animeSelector");
-const animeNames = ref<AnimePreview[]>([]);
-
 const searchAnime = async (inputText: string, loading: (isLoading: boolean) => void) => {
   loading(true);
 
@@ -33,10 +34,11 @@ const searchAnime = async (inputText: string, loading: (isLoading: boolean) => v
   loading(false);
 }
 
-// Artist selector config.
-const artistSelector = useTemplateRef<customSelect>("artistSelector");
-const artistNames = ref<ArtistPreview[]>([]);
+const animeSelector = useTemplateRef<customSelect>("animeSelector");
+const animeNames = ref<AnimePreview[]>();
+searchAnime("", doNothing);
 
+// Artist selector config.
 const searchArtist = async (inputText: string, loading: (isLoading: boolean) => void) => {
   loading(true);
 
@@ -49,6 +51,10 @@ const searchArtist = async (inputText: string, loading: (isLoading: boolean) => 
 
   loading(false);
 }
+
+const artistSelector = useTemplateRef<customSelect>("artistSelector");
+const artistNames = ref<ArtistPreview[]>([]);
+searchArtist("", doNothing);
 
 // Anime preview config.
 type dropBox = InstanceType<typeof DropBox>
@@ -68,10 +74,16 @@ const handelOpeningAdd = () => {
       openingName.value,
       animeSelector.value?.selectedValue.id,
       [artistSelector.value?.selectedValue.id],
-      youtubeLink.value
+      convertToEmbedLink(youtubeLink.value)
   );
   notifier.value?.addNotification("Artist was successfully added!");
 }
+
+function convertToEmbedLink(youtubeUrl: string): string {
+  const videoId = youtubeUrl.split("v=")[1]?.split("&")[0];
+  return videoId ? `https://www.youtube.com/embed/${videoId}` : "";
+}
+
 </script>
 
 <template>
@@ -94,7 +106,6 @@ const handelOpeningAdd = () => {
         <label>Youtube link:</label>
         <input v-model="youtubeLink" type="text" required placeholder="Youtube link..."/>
       </div>
-<!--      <drop-box :label="'Opening preview:'" ref="dropboxPreview"></drop-box>-->
       <blue-button class="submit-button" type="submit">Add</blue-button>
     </form>
   </div>
