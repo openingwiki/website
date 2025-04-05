@@ -55,13 +55,16 @@ const openingAddMenuItems = [
   {label: "Add anime", action: goToAnimeAddPage},
   {label: "Add artist", action: goToArtistAddPage}
 ];
+
+const appVersion = process.env.VUE_APP_VERSION;
 </script>
+
 
 <template>
   <header>
     <div class="logo">
       <router-link to="/">
-        <span class="site-name">Opening.wiki <span style="font-size: 12px">v0.0.1 alpha</span></span>
+        <span class="site-name">Opening.wiki <span style="font-size: 12px">{{appVersion}}</span></span>
       </router-link>
     </div>
 
