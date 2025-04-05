@@ -78,7 +78,7 @@ defineExpose({
         @click="triggerFileInput"
     >
       <p v-if="!image">Drag & Drop or Click to Select PNG images</p>
-      <img v-if="image" :src="image" alt="Selected Image" class="image-preview"/>
+      <img v-if="image" :src="image.preview" alt="Selected Image" class="image-preview"/>
       <!-- Hidden file input to allow selecting files -->
       <input
           ref="fileInput"
