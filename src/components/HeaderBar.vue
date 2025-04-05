@@ -63,7 +63,7 @@ const appVersion = process.env.VUE_APP_VERSION;
 <template>
   <header>
     <div class="logo">
-      <router-link to="/">
+      <router-link class="site-name-link" to="/">
         <span class="site-name">Opening.wiki <span style="font-size: 12px">{{appVersion}}</span></span>
       </router-link>
     </div>
@@ -171,7 +171,7 @@ nav ul li {
   width: 80px;
 }
 
-router-link{
+.site-name-link {
   text-decoration: none;
 }
 
@@ -179,6 +179,7 @@ router-link{
   font-size: 24px;
   color: white;
   font-weight: bold;
+  text-decoration: none;
 }
 
 .link {
