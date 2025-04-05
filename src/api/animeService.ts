@@ -2,7 +2,7 @@ import apiClient from "@/api/apiClient";
 import {AnimePreview} from "@/types/anime";
 
 
-export const addAnime = async (animeName: string, file: File): Promise<bigint> => {
+export const addAnime = async (animeName: string, file: File): Promise<number> => {
     const formData = new FormData();
     formData.append("preview", file);
 
@@ -14,7 +14,7 @@ export const addAnime = async (animeName: string, file: File): Promise<bigint> =
             "Content-Type": "multipart/form-data",
         },
     });
-    return BigInt(response_image_post_request.status);
+    return response_image_post_request.status;
 }
 
 export const getAnimeByName = async (animeName: string): Promise<AnimePreview[]> => {

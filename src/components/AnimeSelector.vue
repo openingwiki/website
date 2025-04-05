@@ -1,22 +1,20 @@
 <script setup lang="ts">
-import { defineProps } from 'vue';
 import {AnimePreview} from "@/types/anime";
-import { ref, defineExpose } from 'vue';
+import { ref, defineExpose, defineProps } from 'vue';
 
 
 const props = defineProps<{
-  opts: unknown[];
-  changeFunc: () => void;
+  opts: AnimePreview[];
+  changeFunc: (inputText: string, loading: (isLoading: boolean) => void) => Promise<void>;
   placeholder: string;
 }>();
 
-const selectedValue = ref<null | typeof props.opts extends (infer U)[] ? U : unknown>(null);
+const selectedValue = ref<null | AnimePreview>(null);
 
 
 defineExpose({
   selectedValue
 })
-
 </script>
 
 <template>

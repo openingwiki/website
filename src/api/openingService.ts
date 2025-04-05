@@ -4,14 +4,14 @@ import {OpeningPreview} from "@/types/opening";
 
 export const addOpening = async (
     openingName: string, animeId: number, artistIds: number[], youtubeEmbedLink: string
-): Promise<bigint> => {
+): Promise<number> => {
     const response = await apiClient.post("/openings/", {
         name: openingName,
         animeId: animeId,
         artistIds: artistIds,
         youtubeEmbedLink: youtubeEmbedLink
     });
-    return BigInt(response.status);
+    return response.status;
 }
 
 export const searchOpenings = async (

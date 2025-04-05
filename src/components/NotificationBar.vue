@@ -1,9 +1,18 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, defineExpose } from "vue";
 
-const notifications = ref([]);
+// Define the notification type
+interface Notification {
+  id: number;
+  message: string;
+  type: "success" | "error";
+}
 
-const addNotification = (message, type = "success") => {
+// Ref to hold the notifications
+const notifications = ref<Notification[]>([]);
+
+// Function to add a notification
+const addNotification = (message: string, type: "success" | "error" = "success") => {
   const id = Date.now();
   notifications.value.push({ id, message, type });
 
@@ -13,7 +22,6 @@ const addNotification = (message, type = "success") => {
   }, 3000);
 };
 
-// eslint-disable-next-line no-undef
 defineExpose({ addNotification });
 </script>
 

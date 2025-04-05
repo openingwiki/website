@@ -27,7 +27,7 @@ const redirectToAuth = (mode: 'login' | 'register') => {
 const logout = () => {
   cookies.remove("access_token");
   userStore.logout();
-  profileMenuComponent.value.toggleMenu();
+  profileMenuComponent.value?.toggleMenu();
 };
 
 const profileMenuItems = [

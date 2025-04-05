@@ -1,4 +1,4 @@
 export interface AnimePreview {
-    id: bigint
+    id: number
     name: string
 }

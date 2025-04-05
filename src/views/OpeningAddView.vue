@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import {getAnimeByName} from "@/api/animeService";
 import {ref, useTemplateRef} from "vue";
-import CustomSelect from "@/components/CustomSelect.vue";
+import AnimeSelector from "@/components/AnimeSelector.vue";
+import ArtistSelector from "@/components/ArtistSelector.vue";
 import {AnimePreview} from "@/types/anime";
 import NotificationBar from "@/components/NotificationBar.vue";
 import DropBox from "@/components/DropBox.vue";
@@ -11,8 +12,6 @@ import {ArtistPreview} from "@/types/artist";
 import {addOpening} from "@/api/openingService";
 
 
-type customSelect = InstanceType<typeof CustomSelect>;
-
 /* eslint-disable @typescript-eslint/no-empty-function */
 const doNothing = (_arg: any) => {};
 
@@ -21,6 +20,10 @@ const doNothing = (_arg: any) => {};
 const openingName = ref("");
 
 // Anime selector config.
+type animeSelectorType = InstanceType<typeof AnimeSelector>;
+const animeNames = ref<AnimePreview[]>([]);
+const animeSelector = useTemplateRef<animeSelectorType>("animeSelector");
+
 const searchAnime = async (inputText: string, loading: (isLoading: boolean) => void) => {
   loading(true);
 
@@ -33,12 +36,13 @@ const searchAnime = async (inputText: string, loading: (isLoading: boolean) => v
 
   loading(false);
 }
-
-const animeSelector = useTemplateRef<customSelect>("animeSelector");
-const animeNames = ref<AnimePreview[]>();
 searchAnime("", doNothing);
 
 // Artist selector config.
+type artistSelectorType = InstanceType<typeof ArtistSelector>
+const artistSelector = useTemplateRef<artistSelectorType>("artistSelector");
+const artistNames = ref<ArtistPreview[]>([]);
+
 const searchArtist = async (inputText: string, loading: (isLoading: boolean) => void) => {
   loading(true);
 
@@ -51,9 +55,6 @@ const searchArtist = async (inputText: string, loading: (isLoading: boolean) => 
 
   loading(false);
 }
-
-const artistSelector = useTemplateRef<customSelect>("artistSelector");
-const artistNames = ref<ArtistPreview[]>([]);
 searchArtist("", doNothing);
 
 // Anime preview config.
@@ -61,7 +62,7 @@ type dropBox = InstanceType<typeof DropBox>
 const dropboxPreview = useTemplateRef<dropBox>("dropboxPreview");
 
 // Notifier config.
-type notificationBar = InstanceType<typeof Notification>
+type notificationBar = InstanceType<typeof NotificationBar>
 const notifier = useTemplateRef<notificationBar>("notifier");
 
 // Youtube link.
@@ -69,14 +70,15 @@ const youtubeLink = ref("");
 
 // Function to add opening.
 const handelOpeningAdd = () => {
-  console.log(artistSelector.value?.selectedValue.id);
-  addOpening(
-      openingName.value,
-      animeSelector.value?.selectedValue.id,
-      [artistSelector.value?.selectedValue.id],
-      convertToEmbedLink(youtubeLink.value)
-  );
-  notifier.value?.addNotification("Artist was successfully added!");
+  if (animeSelector.value?.selectedValue?.id !== undefined && artistSelector.value?.selectedValue?.id !== undefined) {
+    addOpening(
+        openingName.value,
+        animeSelector.value.selectedValue.id,
+        [artistSelector.value.selectedValue.id],
+        convertToEmbedLink(youtubeLink.value)
+    );
+    notifier.value?.addNotification("Artist was successfully added!");
+  }
 }
 
 function convertToEmbedLink(youtubeUrl: string): string {
@@ -96,11 +98,11 @@ function convertToEmbedLink(youtubeUrl: string): string {
       </div>
       <div class="input-group">
         <label>Anime name:</label>
-        <custom-select  ref="animeSelector" class="anime-selector" :selected-value="selectedAnime" :opts="animeNames" :change-func="searchAnime" :placeholder="'Select anime...'"></custom-select>
+        <anime-selector  ref="animeSelector" class="anime-selector" :opts="animeNames" :change-func="searchAnime" :placeholder="'Select anime...'"></anime-selector>
       </div>
       <div class="input-group">
         <label>Artist name:</label>
-        <custom-select  ref="artistSelector" class="anime-selector" :selected-value="selectedArtist" :opts="artistNames" :change-func="searchArtist" :placeholder="'Select artist...'"></custom-select>
+        <artist-selector  ref="artistSelector" class="anime-selector" :opts="artistNames" :change-func="searchArtist" :placeholder="'Select artist...'"></artist-selector>
       </div>
       <div class="input-group">
         <label>Youtube link:</label>

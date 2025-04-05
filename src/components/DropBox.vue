@@ -1,34 +1,41 @@
 <script setup lang="ts">
-import {defineProps, ref} from 'vue';
+import { defineExpose, defineProps, ref } from 'vue';
 import BlueButton from "@/components/BlueButton.vue";
 import RedButton from "@/components/RedButton.vue";
 
+// Define props with types
 const props = defineProps<{
-  label: string,
+  label: string;
 }>();
 
 // Reactive properties for drag state and image preview
 const isDragOver = ref(false);
-const image = ref<File | null>(null);
+const image = ref<{ file: File | null; preview: string | null }>({ file: null, preview: null });
 
 // Ref for the file input element
-const fileInput = ref(null);
+const fileInput = ref<HTMLInputElement | null>(null);
 
 // Trigger the file input dialog when the dropbox is clicked
 const triggerFileInput = () => {
-  fileInput.value.click(); // Programmatically trigger the file input dialog
+  if (fileInput.value) {
+    fileInput.value.click(); // Programmatically trigger the file input dialog
+  }
 };
 
 // Handle drag over event
-const onDragOver = () => {
+const onDragOver = (event: DragEvent) => {
+  event.preventDefault();
   isDragOver.value = true;
 };
 
 // Handle drop event (when files are dropped)
-const onDrop = (event) => {
-  const file = event.dataTransfer.files[0];
+const onDrop = (event: DragEvent) => {
+  event.preventDefault();
+  const file = event.dataTransfer?.files[0];
   isDragOver.value = false;
-  handleFile(file);
+  if (file) {
+    handleFile(file);
+  }
 };
 
 // Handle drag leave event
@@ -37,17 +44,22 @@ const onDragLeave = () => {
 };
 
 // Handle file selection (either by dragging or using file input)
-const onFileChange = (event) => {
-  const file = event.target.files[0];
-  handleFile(file);
+const onFileChange = (event: Event) => {
+  const target = event.target as HTMLInputElement;
+  const file = target.files?.[0];
+  if (file) {
+    handleFile(file);
+  }
 };
 
 // Process the file (check if it's a PNG and set image preview)
-const handleFile = (file) => {
+const handleFile = (file: File) => {
   if (file && file.type === 'image/png') {
     const reader = new FileReader();
     reader.onload = (e) => {
-      image.value = { file, preview: e.target?.result as string }; // Store both file and preview
+      if (e.target?.result) {
+        image.value = { file, preview: e.target.result as string }; // Store both file and preview
+      }
     };
     reader.readAsDataURL(file);
   } else {
@@ -55,12 +67,14 @@ const handleFile = (file) => {
   }
 };
 
+// Clear the selected file and reset the file input
 const clearFile = () => {
   image.value = { file: null, preview: null };
-  fileInput.value.value = null; // Reset input value
-}
+  if (fileInput.value) {
+    fileInput.value.value = ''; // Reset input value
+  }
+};
 
-// eslint-disable-next-line no-undef
 defineExpose({
   image
 });
@@ -68,7 +82,7 @@ defineExpose({
 
 <template>
   <div class="container">
-    <label> {{label}} </label>
+    <label>{{ label }}</label>
     <div
         class="dropbox"
         @dragover.prevent="onDragOver"
@@ -77,8 +91,8 @@ defineExpose({
         :class="{'dragover': isDragOver}"
         @click="triggerFileInput"
     >
-      <p v-if="!image">Drag & Drop or Click to Select PNG images</p>
-      <img v-if="image" :src="image.preview" alt="Selected Image" class="image-preview"/>
+      <p v-if="!image.file">Drag & Drop or Click to Select PNG images</p>
+      <img v-if="image.file" :src="image.preview" alt="Selected Image" class="image-preview"/>
       <!-- Hidden file input to allow selecting files -->
       <input
           ref="fileInput"

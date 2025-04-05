@@ -1,4 +1,4 @@
 export interface UserProfile {
-    id: bigint
+    id: number
     username: string
 }

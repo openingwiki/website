@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {defineProps, onMounted, ref} from 'vue'
+import {defineProps, defineExpose, onMounted, ref} from 'vue'
 
 const props = defineProps<{
   items: { label: string; action: () => void }[];
@@ -30,7 +30,6 @@ onMounted(() => {
   window.addEventListener('click', handleClickOutside);
 });
 
-// eslint-disable-next-line no-undef
 defineExpose({
   isMenuVisible,
   toggleMenu

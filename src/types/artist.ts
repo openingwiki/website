@@ -1,4 +1,4 @@
 export interface ArtistPreview {
-    id: bigint
+    id: number
     name: string
 }

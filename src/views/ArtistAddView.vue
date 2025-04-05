@@ -8,7 +8,7 @@ import {addArtist} from "@/api/artistService";
 
 const artistName = ref("");
 
-type notificationBar = InstanceType<typeof Notification>
+type notificationBar = InstanceType<typeof NotificationBar>
 const notifier = useTemplateRef<notificationBar>("notifier");
 
 const handleArtistAdd = () => {

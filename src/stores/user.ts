@@ -4,7 +4,7 @@ import router from "@/router";
 
 export const useUserStore = defineStore("user", {
     state: () => ({
-        id: BigInt(-1),
+        id: -1,
         username: "",
         isLoggedIn: false,
         isFailedAttempt: false,
@@ -22,7 +22,7 @@ export const useUserStore = defineStore("user", {
             }
         },
         async logout() {
-          this.id = BigInt(-1);
+          this.id = -1;
           this.username = "";
           this.isLoggedIn = false;
           this.isFailedAttempt = false;
