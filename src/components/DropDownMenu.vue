@@ -1,14 +1,34 @@
 <script setup lang="ts">
-import {defineProps, ref} from 'vue'
+import {defineProps, onMounted, ref} from 'vue'
 
 const props = defineProps<{
   items: { label: string; action: () => void }[];
 }>();
 const isMenuVisible = ref(false);
+const containerRef = ref<HTMLElement | null>(null);
 
 const toggleMenu = () => {
   isMenuVisible.value = !isMenuVisible.value;
 };
+
+const closeMenu = () => {
+  isMenuVisible.value = false;
+}
+
+const handleClickOutside = (event: MouseEvent) => {
+  if (
+      isMenuVisible.value &&
+      containerRef.value &&
+      !containerRef.value.contains(event.target as Node)
+  ) {
+    closeMenu();
+  }
+};
+
+onMounted(() => {
+  window.addEventListener('keydown', closeMenu);
+  window.addEventListener('click', handleClickOutside);
+});
 
 // eslint-disable-next-line no-undef
 defineExpose({
@@ -18,7 +38,7 @@ defineExpose({
 </script>
 
 <template>
-  <div class="container">
+  <div class="container" ref="containerRef">
     <button @click="toggleMenu" class="dropdown-btn plus-button">
       <slot/>
     </button>

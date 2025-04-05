@@ -1,11 +1,35 @@
-<script scoped>
+<script setup scoped>
 import HeaderBar from "@/components/HeaderBar.vue";
-import {defineComponent} from "vue";
 
-export default defineComponent({
-  components: {HeaderBar}
-})
+import { onMounted, onUnmounted } from 'vue';
 
+function handleEscape(event) {
+  if (event.key === 'Escape') {
+    document.activeElement?.blur();
+  }
+}
+
+function handleClickOutside(event) {
+  const active = document.activeElement;
+  if (
+      active &&
+      (active.tagName === 'INPUT' || active.tagName === 'TEXTAREA' || active.contentEditable === 'true')
+  ) {
+    if (!active.contains(event.target)) {
+      active.blur();
+    }
+  }
+}
+
+onMounted(() => {
+  window.addEventListener('keydown', handleEscape);
+  window.addEventListener('click', handleClickOutside, true);
+});
+
+onUnmounted(() => {
+  window.removeEventListener('keydown', handleEscape);
+  window.removeEventListener('click', handleClickOutside, true);
+});
 </script>
 
 <template>
