@@ -15,5 +15,5 @@ export interface Opening {
     thumbnailLink: string,
     youtubeEmbedLink: string,
     anime: AnimePreview,
-    artist: ArtistPreview[],
+    artists: ArtistPreview[],
 }
