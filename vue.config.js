@@ -1,4 +1,10 @@
-const { defineConfig } = require('@vue/cli-service')
+const {defineConfig} = require('@vue/cli-service')
 module.exports = defineConfig({
-  transpileDependencies: true
+    transpileDependencies: true,
+    pages: {
+        index: {
+            entry: 'src/main.ts',
+            title: process.env.VUE_APP_SITE_NAME
+        }
+    }
 })
