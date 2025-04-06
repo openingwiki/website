@@ -1,7 +1,6 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import {AnimePreview} from "@/types/anime";
-import { ref, defineExpose, defineProps } from 'vue';
-
+import {defineExpose, defineProps, ref} from 'vue';
 
 const props = defineProps<{
   opts: AnimePreview[];
@@ -11,18 +10,18 @@ const props = defineProps<{
 
 const selectedValue = ref<null | AnimePreview>(null);
 
-
 defineExpose({
   selectedValue
 })
 </script>
 
 <template>
-  <v-select v-model="selectedValue" @search="changeFunc" :options="opts" label="name" class="selecting" :placeholder="placeholder">
+  <v-select v-model="selectedValue" :options="opts" :placeholder="placeholder" class="selecting" label="name"
+            @search="changeFunc">
     <template #search="{attributes, events}">
       <input
-          class="vs__search"
           :required="!selectedValue"
+          class="vs__search"
           v-bind="attributes"
           v-on="events"
       />

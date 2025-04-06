@@ -1,7 +1,10 @@
-<script setup scoped>
+<script scoped setup>
 import HeaderBar from "@/components/HeaderBar.vue";
 
-import { onMounted, onUnmounted } from 'vue';
+import {onMounted, onUnmounted} from 'vue';
+import {useUserStore} from "@/stores/user";
+
+const userStore = useUserStore();
 
 function handleEscape(event) {
   if (event.key === 'Escape') {
@@ -22,6 +25,8 @@ function handleClickOutside(event) {
 }
 
 onMounted(() => {
+  userStore.fetchUser();
+
   window.addEventListener('keydown', handleEscape);
   window.addEventListener('click', handleClickOutside, true);
 });
