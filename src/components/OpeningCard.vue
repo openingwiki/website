@@ -1,5 +1,5 @@
-<script setup lang="ts">
-import { defineProps } from 'vue';
+<script lang="ts" setup>
+import {defineProps} from 'vue';
 
 const props = defineProps<{
   id: number,
@@ -14,11 +14,11 @@ const formattedArtistNames = props.artistNames.map(name => `"${name}"`).join(", 
 
 <template>
   <div class="card-container">
-    <img class="preview" :src="thumbnailLink">
+    <img :src="thumbnailLink" class="preview">
     <div class="info">
-      <span class="name">{{name}}</span>
-      <span class="artist-names">by {{formattedArtistNames}}</span>
-      <span class="anime-name">in {{animeName}} № opening</span>
+      <span class="name">{{ name }}</span>
+      <span class="artist-names">by {{ formattedArtistNames }}</span>
+      <span class="anime-name">in {{ animeName }} № opening</span>
     </div>
   </div>
 </template>
@@ -40,6 +40,14 @@ const formattedArtistNames = props.artistNames.map(name => `"${name}"`).join(", 
   min-height: 200px;
   background-color: #232241;
   color: white;
+}
+
+.card-container:hover {
+  background-color: #2F2D46;
+}
+
+.card-container:active {
+  background-color: #454363;
 }
 
 .info {

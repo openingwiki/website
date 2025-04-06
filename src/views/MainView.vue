@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import OpeningCard from "@/components/OpeningCard.vue";
 import {onMounted, Ref, ref} from "vue";
 import {searchOpenings} from "@/api/openingService";
@@ -20,17 +20,33 @@ onMounted(async () => {
 <template>
   <div class="main">
     <h2 style="color: white; font-weight: normal">Openings collection</h2>
-    <opening-card v-for="opening in openings" :key="opening.id"
-                  :id="opening.id"
-                  :thumbnail-link="opening.thumbnailLink"
-                  :name="opening.name"
-                  :anime-name="opening.animeName"
-                  :artist-names="opening.artistNames"
-    />
+    <router-link
+        v-for="opening in openings"
+        :key="opening.id"
+        :to="`/openings/${opening.id}`"
+        class="no-style-link"
+    >
+      <opening-card
+          :id="opening.id"
+          :anime-name="opening.animeName"
+          :artist-names="opening.artistNames"
+          :name="opening.name"
+          :thumbnail-link="opening.thumbnailLink"
+      />
+    </router-link>
   </div>
 </template>
 
 <style scoped>
+.no-style-link {
+  width: 100%;
+  text-decoration: none;
+}
+
+.no-style-link:hover {
+  
+}
+
 .main {
   align-items: flex-start;
   display: flex;

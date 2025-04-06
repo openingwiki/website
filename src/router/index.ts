@@ -5,37 +5,43 @@ import RegisterView from "@/views/RegisterView.vue";
 import OpeningAddView from "@/views/OpeningAddView.vue";
 import AnimeAddView from "@/views/AnimeAddView.vue";
 import ArtistAddView from "@/views/ArtistAddView.vue";
+import OpeningView from "@/views/OpeningView.vue";
 
 const routes: Array<RouteRecordRaw> = [
     {
-        path: '/',
-        name: 'main',
+        path: "/",
+        name: "main",
         component: MainView
     },
     {
-        path: '/login',
-        name: 'login',
+        path: "/login",
+        name: "login",
         component: LoginView
     },
     {
-        path: '/register',
-        name: 'register',
+        path: "/register",
+        name: "register",
         component: RegisterView
     },
     {
-        path: '/add/opening',
+        path: "/add/opening",
         name: "add_opening",
         component: OpeningAddView
     },
     {
-        path: '/add/anime',
-        name: 'add_anime',
+        path: "/add/anime",
+        name: "add_anime",
         component: AnimeAddView
     },
     {
-        path: '/add/artist',
-        name: 'add_artist',
+        path: "/add/artist",
+        name: "add_artist",
         component: ArtistAddView
+    },
+    {
+        path: "/openings/:id",
+        name: "openings",
+        component: OpeningView
     }
 ]
 
