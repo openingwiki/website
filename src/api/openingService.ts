@@ -1,5 +1,5 @@
 import apiClient from "@/api/apiClient";
-import {OpeningPreview} from "@/types/opening";
+import {Opening, OpeningPreview} from "@/types/opening";
 
 
 export const addOpening = async (
@@ -24,5 +24,10 @@ export const searchOpenings = async (
             query: query
         }
     });
+    return response.data;
+}
+
+export const getOpening = async (openingId: number): Promise<Opening> => {
+    const response = await apiClient.get<Opening>(`/openings/${openingId}`);
     return response.data;
 }
