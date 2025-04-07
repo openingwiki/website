@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import {getAnimeByName} from "@/api/animeService";
 import {ref, useTemplateRef} from "vue";
 import AnimeSelector from "@/components/AnimeSelector.vue";
@@ -13,7 +13,8 @@ import {addOpening} from "@/api/openingService";
 
 
 /* eslint-disable @typescript-eslint/no-empty-function */
-const doNothing = (_arg: any) => {};
+const doNothing = (_arg: any) => {
+};
 
 
 // Opening name config.
@@ -77,7 +78,7 @@ const handelOpeningAdd = () => {
         [artistSelector.value.selectedValue.id],
         convertToEmbedLink(youtubeLink.value)
     );
-    notifier.value?.addNotification("Artist was successfully added!");
+    notifier.value?.addNotification("Opening was successfully added!");
   }
 }
 
@@ -94,24 +95,26 @@ function convertToEmbedLink(youtubeUrl: string): string {
     <form @submit.prevent="handelOpeningAdd">
       <div class="input-group">
         <label for="opening-name">Opening name:</label>
-        <input v-model="openingName" type="text" required placeholder="Opening name..."/>
+        <input v-model="openingName" placeholder="Opening name..." required type="text"/>
       </div>
       <div class="input-group">
         <label>Anime name:</label>
-        <anime-selector  ref="animeSelector" class="anime-selector" :opts="animeNames" :change-func="searchAnime" :placeholder="'Select anime...'"></anime-selector>
+        <anime-selector ref="animeSelector" :change-func="searchAnime" :opts="animeNames" :placeholder="'Select anime...'"
+                        class="anime-selector"></anime-selector>
       </div>
       <div class="input-group">
         <label>Artist name:</label>
-        <artist-selector  ref="artistSelector" class="anime-selector" :opts="artistNames" :change-func="searchArtist" :placeholder="'Select artist...'"></artist-selector>
+        <artist-selector ref="artistSelector" :change-func="searchArtist" :opts="artistNames" :placeholder="'Select artist...'"
+                         class="anime-selector"></artist-selector>
       </div>
       <div class="input-group">
         <label>Youtube link:</label>
-        <input v-model="youtubeLink" type="text" required placeholder="Youtube link..."/>
+        <input v-model="youtubeLink" placeholder="Youtube link..." required type="text"/>
       </div>
       <blue-button class="submit-button" type="submit">Add</blue-button>
     </form>
   </div>
-  <NotificationBar ref="notifier" />
+  <NotificationBar ref="notifier"/>
 </template>
 
 <style scoped>

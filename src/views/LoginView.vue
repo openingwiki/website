@@ -1,7 +1,8 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import BlueButton from "@/components/BlueButton.vue";
 import {useUserStore} from "@/stores/user";
-import { ref } from "vue";
+import {ref} from "vue";
+import InputLine from "@/components/InputLine.vue";
 
 
 const userStore = useUserStore();
@@ -18,22 +19,12 @@ function handleLogin() {
   <div class="login-container">
     <h2 style="font-weight: normal;">Log in</h2>
     <form @submit.prevent="handleLogin">
-      <div class="input-group">
-        <label for="username">Username:</label>
-        <input id="username" v-model="username" type="text" required />
-        <div class="error-message" v-if="userStore.isFailedAttempt">
-          Wrong username or password
-        </div>
-      </div>
-
-      <div class="input-group">
-        <label for="password">Password:</label>
-        <input id="password" v-model="password" type="password" required />
-        <div class="error-message" v-if="userStore.isFailedAttempt">
-          Wrong username or password
-        </div>
-      </div>
-
+      <input-line v-model="username" :has-error="userStore.isFailedAttempt" class="input-group"
+                  error-message="Wrong username or password"
+                  label="Username:" required type="text"/>
+      <input-line v-model="password" :has-error="userStore.isFailedAttempt" class="input-group"
+                  error-message="Wrong username or password"
+                  label="Password:" required type="password"/>
       <blue-button class="submit-button" type="submit">Log in</blue-button>
     </form>
     <div class="useful-links">
@@ -64,22 +55,6 @@ h2 {
   flex-direction: column;
   align-items: flex-start;
   gap: 5px;
-}
-
-input {
-  width: 100%;
-  border: 0;
-  padding: 0;
-  box-sizing: border-box;
-  margin: 0;
-  height: 30px;
-  padding-left: 5px;
-}
-
-input:focus {
-  outline: none;
-  border: 3px solid #ccc;
-  border-color: #3914AF;
 }
 
 form {

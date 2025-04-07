@@ -1,22 +1,22 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import BlueButton from "@/components/BlueButton.vue";
 import DropBox from "@/components/DropBox.vue";
 import {ref, useTemplateRef} from "vue";
 import {addAnime} from "@/api/animeService";
-import DropDownMenu from "@/components/DropDownMenu.vue";
 import NotificationBar from "@/components/NotificationBar.vue";
+import InputLine from "@/components/InputLine.vue";
 
 
 const animeName = ref("");
 
 type dropBox = InstanceType<typeof DropBox>
 const dropBoxRef = useTemplateRef<dropBox>("dropbox_anime_preview");
-type notificationBar = InstanceType<typeof Notification>
+type notificationBar = InstanceType<typeof NotificationBar>
 const notifier = useTemplateRef<notificationBar>("notifier");
 
 const handelAnimeAdd = () => {
   console.log(dropBoxRef.value?.image)
-  if (dropBoxRef.value.image.file == null) {
+  if (dropBoxRef.value?.image.file == null) {
     console.log("error");
   } else {
     addAnime(animeName.value, dropBoxRef.value?.image.file);
@@ -29,15 +29,12 @@ const handelAnimeAdd = () => {
   <div class="form-container">
     <h2 style="font-weight: normal;">Add anime</h2>
     <form @submit.prevent="handelAnimeAdd">
-      <div class="input-group">
-        <label for="username">Anime name:</label>
-        <input v-model="animeName" type="text" required placeholder="Anime name..."/>
-      </div>
-      <drop-box :label="'Anime preview:'" ref="dropbox_anime_preview"></drop-box>
+      <input-line v-model="animeName" label="Anime name:" placeholder="Anime name..." required></input-line>
+      <drop-box ref="dropbox_anime_preview" :label="'Anime preview:'"></drop-box>
       <blue-button class="submit-button" type="submit">Add</blue-button>
     </form>
   </div>
-  <NotificationBar ref="notifier" />
+  <NotificationBar ref="notifier"/>
 </template>
 
 <style scoped>
@@ -54,31 +51,6 @@ h2 {
   flex-direction: column;
   gap: 20px;
   padding: 10px;
-}
-
-.input-group {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 5px;
-}
-
-
-input {
-  width: 100%;
-  border: 0;
-  padding: 0;
-  box-sizing: border-box;
-  margin: 0;
-  height: 30px;
-  padding-left: 5px;
-}
-
-input:focus {
-  outline: none;
-  border: 3px solid #ccc;
-  border-color: #3914AF;
 }
 
 form {
