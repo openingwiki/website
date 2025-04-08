@@ -15,7 +15,7 @@ export const addOpening = async (
 }
 
 export const searchOpenings = async (
-    limit: number, offset: number, query = ""
+    limit = 30, offset = 0, query = ""
 ): Promise<OpeningPreview[]> => {
     const response = await apiClient.get<OpeningPreview[]>("/openings/", {
         params: {
