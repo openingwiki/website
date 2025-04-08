@@ -8,16 +8,41 @@ import BlueButton from "@/components/BlueButton.vue";
 
 const openings: Ref<OpeningPreview[]> = ref([]);
 const lastSearchTerm = ref("");
+const currentPage = ref(1);
+const itemsPerPage = ref(1);
+const totalItems = ref(7);
+const isLoading = ref(false);
+const hasMore = ref(true);
 
-const handleSearch = async (searchTerm: string) => {
-  openings.value.length = 0;
+const handleSearch = async (searchTerm: string, page = 1) => {
+  if (isLoading.value) return;
 
-  const newOpenings = await searchOpenings(10, 0, searchTerm);
-  newOpenings.forEach(opening => {
-    openings.value.push(opening);
-  })
+  isLoading.value = true;
+  try {
+    const offset = (page - 1) * itemsPerPage.value;
+    const newOpenings = await searchOpenings(itemsPerPage.value, offset, searchTerm);
 
-  lastSearchTerm.value = searchTerm;
+    // If it's a new search or first page, replace the openings
+    if (page === 1 || searchTerm !== lastSearchTerm.value) {
+      openings.value = newOpenings;
+      hasMore.value = newOpenings.length === itemsPerPage.value;
+    } else {
+      // Otherwise append to existing openings
+      openings.value = [...openings.value, ...newOpenings];
+      hasMore.value = newOpenings.length === itemsPerPage.value;
+    }
+
+    currentPage.value = page;
+    lastSearchTerm.value = searchTerm;
+  } finally {
+    isLoading.value = false;
+  }
+}
+
+const loadMore = () => {
+  if (hasMore.value) {
+    handleSearch(lastSearchTerm.value, currentPage.value + 1);
+  }
 }
 
 onMounted(async () => {
@@ -43,18 +68,11 @@ onMounted(async () => {
           :thumbnail-link="opening.thumbnailLink"
       />
     </router-link>
-    <div class="dividing-line"></div>
-    <blue-button class="load-more-btn">Load more</blue-button>
+    <blue-button class="load-more-btn" @click="loadMore">Load more</blue-button>
   </div>
 </template>
 
 <style scoped>
-.dividing-line {
-  width: 100%;
-  height: 1px;
-  background-color: #007BFF;
-}
-
 .load-more-btn {
   width: 100%;
   height: 20px;
