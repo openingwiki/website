@@ -1,5 +1,5 @@
 import apiClient from "@/api/apiClient";
-import {Opening, OpeningPreview} from "@/types/opening";
+import {Opening, OpeningPreviewSearch} from "@/types/opening";
 
 
 export const addOpening = async (
@@ -16,8 +16,8 @@ export const addOpening = async (
 
 export const searchOpenings = async (
     limit = 30, offset = 0, query = ""
-): Promise<OpeningPreview[]> => {
-    const response = await apiClient.get<OpeningPreview[]>("/openings/", {
+): Promise<OpeningPreviewSearch> => {
+    const response = await apiClient.get<OpeningPreviewSearch>("/openings/", {
         params: {
             limit: limit,
             offset: offset,

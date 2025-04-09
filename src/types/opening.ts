@@ -17,3 +17,8 @@ export interface Opening {
     anime: AnimePreview,
     artists: ArtistPreview[],
 }
+
+export interface OpeningPreviewSearch {
+    totalNumber: number,
+    openingPreviews: OpeningPreview[]
+}

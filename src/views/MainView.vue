@@ -9,8 +9,8 @@ import BlueButton from "@/components/BlueButton.vue";
 const openings: Ref<OpeningPreview[]> = ref([]);
 const lastSearchTerm = ref("");
 const currentPage = ref(1);
-const itemsPerPage = ref(1);
-const totalItems = ref(7);
+const itemsPerPage = ref(20);
+const totalItems = ref(3);
 const isLoading = ref(false);
 const hasMore = ref(true);
 
@@ -20,16 +20,18 @@ const handleSearch = async (searchTerm: string, page = 1) => {
   isLoading.value = true;
   try {
     const offset = (page - 1) * itemsPerPage.value;
-    const newOpenings = await searchOpenings(itemsPerPage.value, offset, searchTerm);
+    const result = await searchOpenings(itemsPerPage.value, offset, searchTerm);
+    const newOpenings = result.openingPreviews;
+    totalItems.value = result.totalNumber;
 
     // If it's a new search or first page, replace the openings
     if (page === 1 || searchTerm !== lastSearchTerm.value) {
       openings.value = newOpenings;
-      hasMore.value = newOpenings.length === itemsPerPage.value;
+      hasMore.value = openings.value.length != totalItems.value;
     } else {
       // Otherwise append to existing openings
       openings.value = [...openings.value, ...newOpenings];
-      hasMore.value = newOpenings.length === itemsPerPage.value;
+      hasMore.value = openings.value.length != totalItems.value;
     }
 
     currentPage.value = page;
@@ -53,7 +55,7 @@ onMounted(async () => {
 <template>
   <div class="main">
     <h2 style="color: white; font-weight: normal">Openings collection</h2>
-    <search-bar @search="handleSearch"/>
+    <search-bar class="search" @search="handleSearch"/>
     <router-link
         v-for="opening in openings"
         :key="opening.id"
@@ -68,7 +70,8 @@ onMounted(async () => {
           :thumbnail-link="opening.thumbnailLink"
       />
     </router-link>
-    <blue-button class="load-more-btn" @click="loadMore">Load more</blue-button>
+    <div v-if="isLoading">Loading...</div>
+    <blue-button v-if="hasMore" class="load-more-btn" @click="loadMore">Load more</blue-button>
   </div>
 </template>
 
@@ -88,5 +91,6 @@ onMounted(async () => {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  min-width: 500px;
 }
 </style>
